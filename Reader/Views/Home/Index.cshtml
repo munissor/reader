@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@if (Request.IsAuthenticated)
+{
+    @Html.Partial("_Spa")
+
+}
+else
+{
+    @Html.Partial("_Lohp")
+}
+
