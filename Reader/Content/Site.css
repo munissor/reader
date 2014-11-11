@@ -22,3 +22,49 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+
+
+
+
+
+
+
+#side {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+    background-color: #eee;
+    overflow: auto;
+}
+
+#content {
+    position: absolute;
+    top: 50px;
+    left: 20%;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+#articles {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top:0;
+    height: 200px;
+    overflow: auto;
+}
+
+#article {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}

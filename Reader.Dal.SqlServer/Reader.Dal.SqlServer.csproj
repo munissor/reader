@@ -60,10 +60,17 @@
     <Compile Include="Dal\SqlServer\DataModel\Status.cs" />
     <Compile Include="Dal\SqlServer\DataModel\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SubscriptionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reader.Model\Reader.Domain.csproj">
+      <Project>{f58e3694-b614-493f-8df3-4852ea09740f}</Project>
+      <Name>Reader.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,16 @@
+﻿<div>
+    <div>
+        <ul class="feedTools">
+            <li>Add Subscription</li>
+            <li>Manage Subscriptions</li>
+        </ul>
+    </div>
+    <div data-ng-show="scope.subscriptions != null && scope.subscriptions.length == 0">
+         No subscriptions
+    </div>
+    <ul class="feedList" data-ng-show="scope.subscriptions != null && scope.subscriptions.length > 0">
+        <li data-ng-repeat="feed in feeds">
+            <a data-ng-click="selectFeed(feed)">{{feed.Title || feed.Url}}</a>
+        </li>
+    </ul>
+</div>
