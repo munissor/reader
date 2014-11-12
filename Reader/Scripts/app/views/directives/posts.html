@@ -1,0 +1,18 @@
+﻿<table class="table table-striped">
+    <tbody>
+        <tr >
+            <th>View</th>
+            <th>Slug</th>
+            <th>Date</th>
+            <th>Url</th>
+            <th>Tags</th>
+        </tr>
+        <tr data-ng-repeat="post in posts">
+            <td><a data-ng-click="selectPost(post)">View</a></td>
+            <td>{{post.Slug}}</td>
+            <td>{{post.Date}}</td>
+            <td>{{post.Url}}</td>
+            <td>{{formatTags(post)}}</td>
+        </tr>
+    </tbody>
+</table>

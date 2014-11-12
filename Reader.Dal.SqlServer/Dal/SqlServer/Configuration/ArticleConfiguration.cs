@@ -17,10 +17,10 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.Guid);
-            Property(x => x.Title);
+            Property(x => x.Guid).IsRequired().HasMaxLength(500);
+            Property(x => x.Title).HasMaxLength(500);
             Property(x => x.Content);
-            Property(x => x.Link);
+            Property(x => x.Link).IsRequired();
             Property(x => x.PublicationDate);
             Property(x => x.UpdateDate);
                   

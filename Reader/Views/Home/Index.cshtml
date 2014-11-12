@@ -13,3 +13,11 @@ else
     @Html.Partial("_Lohp")
 }
 
+@section Scripts {
+    @if (Request.IsAuthenticated)
+    {
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/angularapp")
+    }
+}
+

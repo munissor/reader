@@ -27,9 +27,17 @@ namespace Reader
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                     "~/Scripts/angular.js",
+                     "~/Scripts/angular-route.js",
+                     "~/Scripts/angular-resource.js",
+                     "~/Scripts/ng-infinite-scroll.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularapp").IncludeDirectory("~/Scripts/app", "*.js", true));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

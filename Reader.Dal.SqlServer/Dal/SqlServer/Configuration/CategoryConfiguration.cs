@@ -17,7 +17,7 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.Name);
+            Property(x => x.Name).IsRequired().HasMaxLength(250);
 
             HasMany(x => x.Articles)
            .WithMany(x => x.Categories)
