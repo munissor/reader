@@ -10,5 +10,7 @@ namespace Reader.Services
     public interface ISubscriptionService
     {
         IList<Subscription> Get(string userId);
+
+        void Post(string userId, Subscription model);
     }
 }

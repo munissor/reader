@@ -17,10 +17,10 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.Read);
-            Property(x => x.ReadDate);
-            Property(x => x.Starred);
-            Property(x => x.StarredDate);
+            Property(x => x.Read).IsRequired();
+            Property(x => x.ReadDate).IsRequired();
+            Property(x => x.Starred).IsRequired();
+            Property(x => x.StarredDate).IsRequired();
         }
     }
 }

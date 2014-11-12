@@ -1,4 +1,7 @@
-﻿using Reader.Models;
+﻿using AutoMapper;
+using Reader.Model;
+using Reader.Models;
+using Reader.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,18 @@ namespace Reader.Controllers.Api
     [Authorize]
     public class SubscriptionController : BaseController
     {
-        // GET: api/Subscription
-        public IEnumerable<SubscriptionViewModel> Get()
+        private ISubscriptionService subscriptionService;
+
+        public SubscriptionController(ISubscriptionService subscriptionService)
         {
-            return new SubscriptionViewModel[]{};
+            this.subscriptionService = subscriptionService;
+        }
+
+        // GET: api/Subscription
+        public IList<SubscriptionViewModel> Get()
+        {
+            var res = subscriptionService.Get(GetUserId());
+            return Mapper.Map<IList<Subscription>, IList<SubscriptionViewModel>>(res);
         }
 
         // GET: api/Subscription/5
@@ -27,6 +38,8 @@ namespace Reader.Controllers.Api
         // POST: api/Subscription
         public void Post([FromBody]SubscriptionViewModel value)
         {
+            var model = Mapper.Map<SubscriptionViewModel, Subscription>(value);
+            subscriptionService.Post(GetUserId(), model);
             // add
         }
 

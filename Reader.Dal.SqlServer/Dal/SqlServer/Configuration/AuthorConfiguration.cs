@@ -17,8 +17,8 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.Name);
-            Property(x => x.Email);
+            Property(x => x.Name).HasMaxLength(250);
+            Property(x => x.Email).HasMaxLength(250);
 
             HasRequired(x => x.Article).WithMany(x => x.Authors).HasForeignKey(x => x.ArticleId);
         }

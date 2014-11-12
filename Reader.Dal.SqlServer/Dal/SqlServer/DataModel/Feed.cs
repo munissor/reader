@@ -14,7 +14,7 @@ namespace Reader.Dal.SqlServer.DataModel
         /// <summary>
         /// Gets or sets Id of the feed
         /// </summary>
-        public virtual string Id { get; set; }
+        public virtual long Id { get; set; }
 
         /// <summary>
         /// Gets or sets the Url of the feed
@@ -34,12 +34,12 @@ namespace Reader.Dal.SqlServer.DataModel
         /// <summary>
         /// Gets or sets the last time the feed was update from the author
         /// </summary>
-        public virtual DateTime LastUpdate { get; set; }
+        public virtual DateTime? LastUpdate { get; set; }
 
         /// <summary>
         /// Gets or sets the last time the feed was downloaded from the system
         /// </summary>
-        public virtual DateTime LastDownload { get; set; }
+        public virtual DateTime? LastDownload { get; set; }
 
         /// <summary>
         /// Gets or sets the last error that was generated when downloading the feed

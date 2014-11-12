@@ -17,9 +17,9 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.Url);
-            Property(x => x.Title);
-            Property(x => x.Subtitle);
+            Property(x => x.Url).IsRequired().HasMaxLength(500);
+            Property(x => x.Title).IsRequired().HasMaxLength(250);
+            Property(x => x.Subtitle).HasMaxLength(1000);
             Property(x => x.LastUpdate);
             Property(x => x.LastDownload);
             Property(x => x.LastDownloadError);

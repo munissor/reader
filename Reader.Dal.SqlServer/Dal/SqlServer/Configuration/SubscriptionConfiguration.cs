@@ -17,9 +17,11 @@ namespace Reader.Dal.SqlServer.Configuration
 
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.UserId);
-            Property(x => x.FeedId);
-            Property(x => x.SubscriptionDate);
+            Property(x => x.UserId).IsRequired().HasMaxLength(128);
+            Property(x => x.FeedId).IsRequired();
+            Property(x => x.SubscriptionDate).IsRequired();
+
+            HasRequired(x => x.Feed).WithMany().HasForeignKey(x => x.FeedId);
         }
     }
 }

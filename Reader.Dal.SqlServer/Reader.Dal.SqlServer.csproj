@@ -59,6 +59,27 @@
     <Compile Include="Dal\SqlServer\DataModel\Feed.cs" />
     <Compile Include="Dal\SqlServer\DataModel\Status.cs" />
     <Compile Include="Dal\SqlServer\DataModel\Subscription.cs" />
+    <Compile Include="Migrations\201411112313583_InitialCreate.cs" />
+    <Compile Include="Migrations\201411112313583_InitialCreate.Designer.cs">
+      <DependentUpon>201411112313583_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411122002141_SubscriptionRelation.cs" />
+    <Compile Include="Migrations\201411122002141_SubscriptionRelation.Designer.cs">
+      <DependentUpon>201411122002141_SubscriptionRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411122013255_FeedUrlLength.cs" />
+    <Compile Include="Migrations\201411122013255_FeedUrlLength.Designer.cs">
+      <DependentUpon>201411122013255_FeedUrlLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411122018282_FixedUserIdLength.cs" />
+    <Compile Include="Migrations\201411122018282_FixedUserIdLength.Designer.cs">
+      <DependentUpon>201411122018282_FixedUserIdLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411122021558_NullabeDates.cs" />
+    <Compile Include="Migrations\201411122021558_NullabeDates.Designer.cs">
+      <DependentUpon>201411122021558_NullabeDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SubscriptionService.cs" />
   </ItemGroup>
@@ -71,6 +92,23 @@
       <Project>{f58e3694-b614-493f-8df3-4852ea09740f}</Project>
       <Name>Reader.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201411112313583_InitialCreate.resx">
+      <DependentUpon>201411112313583_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411122002141_SubscriptionRelation.resx">
+      <DependentUpon>201411122002141_SubscriptionRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411122013255_FeedUrlLength.resx">
+      <DependentUpon>201411122013255_FeedUrlLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411122018282_FixedUserIdLength.resx">
+      <DependentUpon>201411122018282_FixedUserIdLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411122021558_NullabeDates.resx">
+      <DependentUpon>201411122021558_NullabeDates.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

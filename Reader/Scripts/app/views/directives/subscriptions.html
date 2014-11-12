@@ -1,15 +1,23 @@
 ﻿<div>
     <div>
         <ul class="feedTools">
-            <li>Add Subscription</li>
+            <li data-ng-click="openAdd()">Add Subscription</li>
             <li>Manage Subscriptions</li>
         </ul>
     </div>
-    <div data-ng-show="scope.subscriptions != null && scope.subscriptions.length == 0">
+    <div data-ng-show="adding">
+        <div>Feed Url</div>
+        <input type="text" data-ng-model="addModel.Url" />
+        <div>
+            <button data-ng-click="add()">Add</button>
+            <button data-ng-click="closeAdd()">Cancel</button>
+        </div>
+    </div>
+    <div data-xxng-show="scope.subscriptions != null && scope.subscriptions.length == 0">
          No subscriptions
     </div>
-    <ul class="feedList" data-ng-show="scope.subscriptions != null && scope.subscriptions.length > 0">
-        <li data-ng-repeat="feed in feeds">
+    <ul class="feedList" data-xxng-show="scope.subscriptions != null && scope.subscriptions.length > 0">
+        <li data-ng-repeat="feed in subscriptions">
             <a data-ng-click="selectFeed(feed)">{{feed.Title || feed.Url}}</a>
         </li>
     </ul>
