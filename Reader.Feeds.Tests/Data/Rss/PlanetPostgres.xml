@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Planet PostgreSQL</title>
+    <link>http://planet.postgresql.org</link>
+    <description>Planet PostgreSQL</description>
+    <lastBuildDate>Fri, 14 Nov 2014 23:02:31 GMT</lastBuildDate>
+    <generator>Planet PostgreSQL</generator>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    <item>
+      <title>Gabriele Bartolini: Italian PGDay, eight edition: over 120 attendees!</title>
+      <link>http://blog.2ndquadrant.com/italian-pgday-eight-edition/</link>
+      <description>
+        &lt;p&gt;&lt;img alt="Group photo PGDayIT" class="aligncenter size-full wp-image-1080" height="452" src="http://blog.2ndquadrant.com/wp-content/uploads/2014/11/B12jIIXIEAACupP.jpg" width="602" /&gt;November 7th 2014 was the &lt;strong&gt;&lt;a href="http://2014.pgday.it/"&gt;eight Italian PostgreSQL Day&lt;/a&gt;&lt;/strong&gt;, the national event dedicated to the promotion of the world&amp;#8217;s most advanced open source database. The Italian edition is one of the most enduring in the whole Postgres community (the first one took place in July 2007) and the results of the activity of a very established non profit organisation such as &lt;a href="http://www.itpug.org/"&gt;ITPUG (Italian PostgreSQL Users Group)&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;span id="more-1079"&gt;&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;The Italian PGDay took place in &lt;strong&gt;Prato&lt;/strong&gt;, historical location for this event, in the premises of the Prato campus (PIN) of the University of Florence. And for the first time, &lt;strong&gt;the attendance of the event went over 100 people&lt;/strong&gt;, with a final counting of 124 registered people (including speakers and staff). I was also extremely happy to notice a &lt;strong&gt;relevant presence of women&lt;/strong&gt; at PGDay &amp;#8211; I believe around 10%.&lt;/p&gt;
+        &lt;p&gt;It was a pleasure to have international speakers like Magnus and Simon, in Prato for the &lt;em&gt;nth&lt;/em&gt; time, as well as a new entry like Mladen Marinovic from Croatia. There were 14 talks in total, spread in two parallel sessions, and an interactive training session (ITPUG labs) in the second room.&lt;/p&gt;
+        &lt;p&gt;I was delighted to deliver the &lt;strong&gt;opening keynote&lt;/strong&gt;, a summary of my experience and relationship with PostgreSQL from both a community and professional level. It was focused on us, &lt;strong&gt;knowledge workers&lt;/strong&gt;, that can decide to invest in open source for our continuous improvement. And what better than studying (as well as &lt;strong&gt;teaching in schools&lt;/strong&gt;) software like Linux and PostgreSQL? I then quickly outlined the most common objections towards the adoption of PostgreSQL (including the funniest or more depressing ones) that I have encountered so far in my career (e.g.: &lt;em&gt;&amp;#8220;I just want to know: Can Postgres manage millions of records?&amp;#8221;&lt;/em&gt;). Then unrolled the reasons why I believe &lt;strong&gt;choosing to adopt PostgreSQL now is the most wise and strategic choice/decision&lt;/strong&gt; that can be made for a data management solution.&lt;/p&gt;
+        &lt;p&gt;I want also to thank some important Italian companies that decided to &lt;em&gt;come out&lt;/em&gt; and publicly said why Postgres is the right choice for their daily management of data, their main asset: I am talking about &lt;strong&gt;Navionics&lt;/strong&gt;, &lt;strong&gt;JobRapido&lt;/strong&gt; and &lt;strong&gt;Subito.it&lt;/strong&gt; (thank you Laura, Paolo and Pietro).&lt;/p&gt;
+        &lt;p&gt;On a final note, I want to thank all the volunteers and fellow ITPUG members that made this event possible. Being one of the founders of ITPUG and a former president, I am really proud to see the progress that the association has been making through the dedication and hard work of all the volunteers that donate their spare time to the promotion of Postgres in Italy. Thank you guys.&lt;/p&gt;
+        &lt;p&gt;Here is the coverage on &lt;a href="https://twitter.com/search?q=%23pgdayit2014"&gt;Twitter (#PGDayIT2014)&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://blog.2ndquadrant.com/?p=1079</guid>
+      <pubDate>Fri, 14 Nov 2014 15:04:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Joshua Tolley: Dear PostgreSQL: Where are my logs?</title>
+      <link>http://blog.endpoint.com/2014/11/dear-postgresql-where-are-my-logs.html</link>
+      <description>
+        &lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="float: right;"&gt;&lt;a href="https://www.flickr.com/photos/jitze1942/2335756492/in/photostream/" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"&gt;&lt;img border="0" src="https://c3.staticflickr.com/3/2276/2335756492_70bb3b3e34_m.jpg" /&gt;&lt;/a&gt;&lt;p&gt;&lt;small&gt;From Flickr user &lt;a href="https://www.flickr.com/photos/jitze1942/"&gt;Jitze Couperus&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;When debugging a problem, it's always frustrating to get sidetracked hunting down the relevant logs. PostgreSQL users can select any of several different ways to handle database logs, or even choose a combination. But especially for new users, or those getting used to an unfamiliar system, just finding the logs can be difficult. To ease that pain, here's a key to help dig up the correct logs.&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;h2&gt;Where are log entries sent?&lt;/h2&gt;First, connect to PostgreSQL with psql, pgadmin, or some other client that lets you run SQL queries, and run this:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;foo=# show log_destination ;
+        log_destination
+        -----------------
+        stderr
+        (1 row)&lt;/pre&gt;The log_destination setting tells PostgreSQL where log entries should go. In most cases it will be one of four values, though it can also be a comma-separated list of any of those four values. We'll discuss each in turn.&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;h3&gt;SYSLOG&lt;/h3&gt;Syslog is a complex beast, and if your logs are going here, you'll want more than this blog post to help you. Different systems have different syslog daemons, those daemons have different capabilities and require different configurations, and we simply can't cover them all here. Your syslog may be configured to send PostgreSQL logs anywhere on the system, or even to an external server. For your purposes, though, you'll need to know what "ident" and "facility" you're using. These values tag each syslog message coming from PostgreSQL, and allow the syslog daemon to sort out where the message should go. You can find them like this:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;foo=# show syslog_facility ;
+        syslog_facility
+        -----------------
+        local0
+        (1 row)
+
+        foo=# show syslog_ident ;
+        syslog_ident
+        --------------
+        postgres
+        (1 row)
+        &lt;/pre&gt;Syslog is often useful, in that it allows administrators to collect logs from many applications into one place, to relieve the database server of logging I/O overhead (which may or may not actually help anything), or any number of other interesting rearrangements of log data.&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;h3&gt;EVENTLOG&lt;/h3&gt;For PostgreSQL systems running on Windows, you can send log entries to the Windows event log. You'll want to tell Windows to expect the log values, and what "event source" they'll come from. You can find instructions for this operation in the &lt;a href="http://www.postgresql.org/docs/9.3/static/event-log-registration.html"&gt;PostgreSQL documentation discussing server setup&lt;/a&gt;.&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;h3&gt;STDERR&lt;/h3&gt;This is probably the most common log destination (it's the default, after all) and can get fairly complicated in itself. Selecting "stderr" instructs PostgreSQL to send log data to the "stderr" (short for "standard error") output pipe most operating systems give every new process by default. The difficult is that PostgreSQL or the applications that launch it can then redirect this pipe to all kinds of different places. If you start PostgreSQL manually with no particular redirection in place, log entries will be written to your terminal:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;[josh@eddie ~]$ pg_ctl -D $PGDATA start
+        server starting
+        [josh@eddie ~]$ LOG:  database system was shut down at 2014-11-05 12:48:40 MST
+        LOG:  database system is ready to accept connections
+        LOG:  autovacuum launcher started
+        LOG:  statement: select syntax error;
+        ERROR:  column "syntax" does not exist at character 8
+        STATEMENT:  select syntax error;
+        &lt;/pre&gt;In these logs you'll see the logs from me starting the database, connecting to it from some other terminal, and issuing the obviously erroneous command "select syntax error". But there are several ways to redirect this elsewhere. The easiest is with pg_ctl's -l option, which essentially redirects stderr to a file, in which case the startup looks like this:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;[josh@eddie ~]$ pg_ctl -l logfile -D $PGDATA start
+        server starting&lt;/pre&gt;Finally, you can also tell PostgreSQL to redirect its stderr output internally, with the logging_collector option (which older versions of PostgreSQL named "redirect_stderr"). This can be on or off, and when on, collects stderr output into a configured log directory.&lt;br /&gt;
+        &lt;br /&gt;
+        So if you end see a log_destination set to "stderr", a good next step is to check logging_collector:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;foo=# show logging_collector ;
+        logging_collector
+        -------------------
+        on
+        (1 row)&lt;/pre&gt;In this system, logging_collector is turned on, which means we have to find out where it's collecting logs. First, check log_directory. In my case, below, it's an absolute path, but by default it's the relative path "pg_log". This is relative to the PostgreSQL data directory. Log files are named according to a pattern in log_filename. Each of these settings is shown below:&lt;br /&gt;
+        &lt;pre class="brush:text"&gt;foo=# show log_directory ;
+        log_directory
+        -------------------------
+        /home/josh/devel/pg_log
+        (1 row)
+
+        foo=# show data_directory ;
+        data_directory
+        ----------------------------
+        /home/josh/devel/pgdb/data
+        (1 row)
+
+        foo=# show log_filename ;
+        log_filename
+        --------------------------------
+        postgresql-%Y-%m-%d_%H%M%S.log
+        (1 row)&lt;/pre&gt;Documentation for each of these options, along with settings governing log rotation, is available &lt;a href="http://www.postgresql.org/docs/9.3/static/runtime-config-logging.html"&gt;here&lt;/a&gt;.&lt;br /&gt;
+        &lt;br /&gt;
+        If logging_collector is turned off, you can still find the logs using the /proc filesystem, on operating systems equipped with one. First you'll need to find the process ID of a PostgreSQL process, which is simple enough:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;foo=# select pg_backend_pid() ;
+        pg_backend_pid
+        ----------------
+        31950
+        (1 row)&lt;/pre&gt;Then, check /proc/YOUR_PID_HERE/fd/2, which is a symlink to the log destination:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;[josh@eddie ~]$ ll /proc/31113/fd/2
+        lrwx------ 1 josh josh 64 Nov  5 12:52 /proc/31113/fd/2 -&gt; /var/log/postgresql/postgresql-9.2-local.log&lt;/pre&gt;&lt;br /&gt;
+        &lt;h3&gt;CSVLOG&lt;/h3&gt;The "csvlog" mode creates logs in CSV format, designed to be easily machine-readable. In fact, &lt;a href="http://www.postgresql.org/docs/9.3/static/runtime-config-logging.html#RUNTIME-CONFIG-LOGGING-CSVLOG"&gt;this section of the PostgreSQL documentation&lt;/a&gt; even provides a handy table definition if you want to slurp the logs into your database. CSV logs are produced in a fixed format the administrator cannot change, but it includes fields for everything available in the other log formats. For these to work, you need to have logging_collector turned on; without logging_collector, the logs simply won't show up anywhere. But when configured correctly, PostgreSQL will create CSV format logs in the log_directory, with file names mostly following the log_filename pattern. Here's my example database, with log_destination set to "stderr, csvlog" and logging_collector turned on, just after I start the database and issue one query:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;[josh@eddie ~/devel/pg_log]$ ll
+        total 8
+        -rw------- 1 josh josh 611 Nov 12 16:30 postgresql-2014-11-12_162821.csv
+        -rw------- 1 josh josh 192 Nov 12 16:30 postgresql-2014-11-12_162821.log
+        &lt;/pre&gt;The CSV log output looks like this:&lt;br /&gt;
+        &lt;pre class="brush:plain"&gt;[josh@eddie ~/devel/pg_log]$ cat postgresql-2014-11-12_162821.csv
+        2014-11-12 16:28:21.700 MST,,,2993,,5463ed15.bb1,1,,2014-11-12 16:28:21 MST,,0,LOG,00000,"database system was shut down at 2014-11-12 16:28:16 MST",,,,,,,,,""
+        2014-11-12 16:28:21.758 MST,,,2991,,5463ed15.baf,1,,2014-11-12 16:28:21 MST,,0,LOG,00000,"database system is ready to accept connections",,,,,,,,,""
+        2014-11-12 16:28:21.759 MST,,,2997,,5463ed15.bb5,1,,2014-11-12 16:28:21 MST,,0,LOG,00000,"autovacuum launcher started",,,,,,,,,""
+        2014-11-12 16:30:46.591 MST,"josh","josh",3065,"[local]",5463eda6.bf9,1,"idle",2014-11-12 16:30:46 MST,2/10,0,LOG,00000,"statement: select 'hello, world!';",,,,,,,,,"psql"&lt;/pre&gt;
+      </description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-7997313029981170997.post-3526114597991032397</guid>
+      <pubDate>Wed, 12 Nov 2014 23:33:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Joshua Drake: AWS performance: Results included</title>
+      <link>http://www.commandprompt.com/blogs/joshua_drake/2014/11/aws_performance_results_included/</link>
+      <description>
+        I am not a big fan of AWS. It is a closed platform. It is designed to be the Apple of the Cloud to the Eve of Postgres users. That said, customers drive business and some of our customers use AWS, even if begrudgingly. Because of these factors we are getting very good at getting PostgreSQL to perform on AWS/EBS, albeit with some disclosures:
+        &lt;ol&gt;
+        &lt;li&gt;That high IO latency is an acceptable business requirement.
+        &lt;li&gt;That you are willing to spend a lot of money to get performance you can get for less money using bare metal: rented or not. Note: This is a cloud issue not an AWS issue.
+        &lt;/ol&gt;
+        &lt;p&gt;
+        Using the following base configuration (see adjustments for each configuration after the graphic):
+        &lt;pre&gt;
+        port = 5432
+        max_connections = 500
+        ssl = true
+        shared_buffers = 4GB
+        temp_buffers = 8MB
+        work_mem = 47MB
+        maintenance_work_mem = 512MB
+        wal_level = hot_standby
+        synchronous_commit = on
+        commit_delay = 0
+        commit_siblings = 5
+        checkpoint_segments = 30
+        checkpoint_timeout = 10min
+        checkpoint_completion_target = 0.9
+        random_page_cost = 1.0
+        effective_cache_size = 26GB
+        &lt;/pre&gt;
+        &lt;p&gt;
+        Each test was run using pgbench against 9.1 except for configuration 9 which was 9.3: &lt;br /&gt;
+        &lt;pre&gt;pgbench -F 100 -s 100 postgres -c 500 -j10 -t1000 -p5433&lt;/pre&gt;
+        &lt;p&gt;
+        Here are some of our latest findings:
+        &lt;p&gt;
+        &lt;div align="center"&gt;
+        &lt;img src="https://files.commandprompt.com/jd/tps9.3.png" /&gt;
+        &lt;/div&gt;
+        &lt;p&gt;
+        The AWS configuration is:
+        &lt;blockquote&gt;
+        16 Cores&lt;br /&gt;
+        30G of memory (free -h reports 29G) &lt;br /&gt;
+        (2) PIOPS volumes at 2000 IOPS a piece. &lt;br /&gt;
+        The PIOPS volumes are not in A RAID and are mounted separately. &lt;br /&gt;
+        The PIOPS volumes are formatted with xfs and default options &lt;br /&gt;
+        The PIOPS volumes were warmed.
+        &lt;/blockquote&gt;
+        &lt;ol&gt;
+        &lt;li&gt; Configuration 1:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on the same partition &lt;br /&gt;
+        synchronous_commit = on &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 2:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on the same partition &lt;br /&gt;
+        synchronous_commit = off &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 3:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on the same partition &lt;br /&gt;
+        synchronous_commit = off &lt;br /&gt;
+        commit_delay = 100000 &lt;br /&gt;
+        commit_siblings = 50  &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 4:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on the same partition &lt;br /&gt;
+        synchronous_commit = off &lt;br /&gt;
+        commit_delay = 100000    &lt;br /&gt;
+        commit_siblings = 500    &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 5:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on different partitions &lt;br /&gt;
+        synchronous_commit = off &lt;br /&gt;
+        commit_delay = 100000    &lt;br /&gt;
+        commit_siblings = 500    &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 6:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on different partitions &lt;br /&gt;
+        synchronous_commit = on  &lt;br /&gt;
+        commit_delay = 100000    &lt;br /&gt;
+        commit_siblings = 500    &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 7:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on different partitions &lt;br /&gt;
+        synchronous_commit = on  &lt;br /&gt;
+        commit_delay = 0         &lt;br /&gt;
+        commit_siblings = 5      &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 8:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on different partitions &lt;br /&gt;
+        synchronous_commit = on  &lt;br /&gt;
+        checkpoint_segments = 300 &lt;br /&gt;
+        checkpoint_timeout = 60min &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;li&gt; Configuration 9:
+        &lt;blockquote&gt;
+        $PGDATA and pg_xlog on different partitions &lt;br /&gt;
+        PostgreSQL 9.3 &lt;br /&gt;
+        synchronous_commit = on  &lt;br /&gt;
+        checkpoint_segments = 300 &lt;br /&gt;
+        checkpoint_timeout = 60min &lt;br /&gt;
+        &lt;/blockquote&gt;
+        &lt;/ol&gt;
+      </description>
+      <guid isPermaLink="true">http://www.commandprompt.com/blogs/joshua_drake/2014/11/aws_performance_results_included/</guid>
+      <pubDate>Wed, 12 Nov 2014 16:00:08 GMT</pubDate>
+    </item>
+    <item>
+      <title>Michael Paquier: Postgres 9.5 feature highlight: BRIN indexes</title>
+      <link>http://michael.otacoo.com/postgresql-2/postgres-9-5-feature-highlight-brin-indexes/</link>
+      <description>
+        &lt;p&gt;A new index type, called BRIN. or Block Range INdex is showing up in
+        PostgreSQL 9.5, introduced by this commit:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;commit: 7516f5259411c02ae89e49084452dc342aadb2ae
+        author: Alvaro Herrera &amp;lt;alvherre@alvh.no-ip.org&amp;gt;
+        date: Fri, 7 Nov 2014 16:38:14 -0300
+        BRIN: Block Range Indexes
+
+        BRIN is a new index access method intended to accelerate scans of very
+        large tables, without the maintenance overhead of btrees or other
+        traditional indexes.  They work by maintaining &amp;quot;summary&amp;quot; data about
+        block ranges.  Bitmap index scans work by reading each summary tuple and
+        comparing them with the query quals; all pages in the range are returned
+        in a lossy TID bitmap if the quals are consistent with the values in the
+        summary tuple, otherwise not.  Normal index scans are not supported
+        because these indexes do not store TIDs.
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;By nature, using a BRIN index for a query scan is a kind of mix between a
+        sequential scan and an index scan because what such an index scan is storing
+        a range of data for a given fixed number of data blocks. So this type of
+        index finds its advantages in very large relations that cannot sustain the
+        size of for example a btree where all values are indexed, and that is even
+        better with data that has a high ordering across the relation blocks. For
+        example let's take the case of a simple table where the data is completely
+        ordered across data pages like this one with 100 million tuples:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# CREATE TABLE brin_example AS SELECT generate_series(1,100000000) AS id;
+        SELECT 100000000
+        =# CREATE INDEX btree_index ON brin_example(id);
+        CREATE INDEX
+        Time: 239033.974 ms
+        =# CREATE INDEX brin_index ON brin_example USING brin(id);
+        CREATE INDEX
+        Time: 42538.188 ms
+        =# \d brin_example
+        Table &amp;quot;public.brin_example&amp;quot;
+        Column |  Type   | Modifiers
+        --------+---------+-----------
+        id     | integer |
+        Indexes:
+        &amp;quot;brin_index&amp;quot; brin (id)
+        &amp;quot;btree_index&amp;quot; btree (id)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Note that the creation of the BRIN index was largely faster: it has less
+        index entries to write so it generates less traffic. By default, 128 blocks
+        are used to calculate a range of values for a single index entry, this can
+        be set with the new storage parameter pages_per_range using a WITH clause.&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# CREATE INDEX brin_index_64 ON brin_example USING brin(id)
+        WITH (pages_per_range = 64);
+        CREATE INDEX
+        =# CREATE INDEX brin_index_256 ON brin_example USING brin(id)
+        WITH (pages_per_range = 256);
+        CREATE INDEX
+        =# CREATE INDEX brin_index_512 ON brin_example USING brin(id)
+        WITH (pages_per_range = 512);
+        CREATE INDEX
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Having a look at the relation sizes, BRIN indexes are largely smaller in
+        size.&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# SELECT relname, pg_size_pretty(pg_relation_size(oid))
+        FROM pg_class WHERE relname LIKE 'brin_%' OR
+        relname = 'btree_index' ORDER BY relname;
+        relname     | pg_size_pretty
+        ----------------+----------------
+        brin_example   | 3457 MB
+        brin_index     | 104 kB
+        brin_index_256 | 64 kB
+        brin_index_512 | 40 kB
+        brin_index_64  | 192 kB
+        btree_index    | 2142 MB
+        (6 rows)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Let's have a look at what kind of plan is generated then for scans using
+        the btree index and the BRIN index on the previous table.&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# EXPLAIN ANALYZE SELECT id FROM brin_example WHERE id = 52342323;
+        QUERY PLAN
+        ---------------------------------------------------------------------------------
+        Index Only Scan using btree_index on brin_example
+        (cost=0.57..8.59 rows=1 width=4) (actual time=0.031..0.033 rows=1 loops=1)
+        Index Cond: (id = 52342323)
+        Heap Fetches: 1
+        Planning time: 0.200 ms
+        Execution time: 0.081 ms
+        (5 rows)
+        =# EXPLAIN ANALYZE SELECT id FROM brin_example WHERE id = 52342323;
+        QUERY PLAN
+        --------------------------------------------------------------------------------------
+        Bitmap Heap Scan on brin_example
+        (cost=20.01..24.02 rows=1 width=4) (actual time=11.834..30.960 rows=1 loops=1)
+        Recheck Cond: (id = 52342323)
+        Rows Removed by Index Recheck: 115711
+        Heap Blocks: lossy=512
+        -&amp;gt;  Bitmap Index Scan on brin_index_512
+        (cost=0.00..20.01 rows=1 width=0) (actual time=1.024..1.024 rows=5120 loops=1)
+        Index Cond: (id = 52342323)
+        Planning time: 0.196 ms
+        Execution time: 31.012 ms
+        (8 rows)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;The btree index is or course faster, in this case an index only scan is even
+        doable. Now remember that BRIN indexes are lossy, meaning that not all the
+        blocks fetched back after scanning the range entry may contain a target tuple.&lt;/p&gt;
+
+        &lt;p&gt;A last thing to notice is that &lt;a href="http://www.postgresql.org/docs/devel/static/pageinspect.html"&gt;pageinspect&lt;/a&gt; has been
+        updated with a set of functions to scan pages of a BRIN index:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# SELECT itemoffset, value
+        FROM brin_page_items(get_raw_page('brin_index', 5), 'brin_index') LIMIT 5;
+        itemoffset |         value
+        ------------+------------------------
+        1 | {35407873 .. 35436800}
+        2 | {35436801 .. 35465728}
+        3 | {35465729 .. 35494656}
+        4 | {35494657 .. 35523584}
+        5 | {35523585 .. 35552512}
+        (5 rows)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;With its first shot, BRIN indexes come with a set of operator classes able
+        to perform min/max calculation for each set of pages for most of the common
+        datatypes. The list is available &lt;a href="http://www.postgresql.org/docs/devel/static/brin-builtin-opclasses.html"&gt;here&lt;/a&gt;.
+        Note that the design of BRIN indexes make possible the implementation of
+        new operator classes with operations more complex than simple min/max, one
+        of the next operators that may show up would be for point and bounding box
+        calculations.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://michael.otacoo.com/postgresql-2/postgres-9-5-feature-highlight-brin-indexes/</guid>
+      <pubDate>Wed, 12 Nov 2014 08:35:47 GMT</pubDate>
+    </item>
+    <item>
+      <title>Brian Dunavant: Writeable CTEs to improve performance</title>
+      <link>http://www.phishie.com/wordpress/2014/11/writeable-ctes-to-improve-performance/</link>
+      <description>
+        &lt;p&gt;I wrote an article on my company blog on using Postgres&amp;#8217; writable CTE feature to improve performance and write cleaner code. The article is available at:&lt;/p&gt;
+        &lt;p&gt;&lt;a href="http://omniti.com/seeds/writable-ctes-improve-performance" title="http://omniti.com/seeds/writable-ctes-improve-performance"&gt;http://omniti.com/seeds/writable-ctes-improve-performance&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I&amp;#8217;ve been told by a number of people I should expand it further to include updates and the implications there and then consider doing a talk on it at a Postgres conference.   Hrm&amp;#8230;.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://www.phishie.com/wordpress/?p=932</guid>
+      <pubDate>Tue, 11 Nov 2014 22:37:47 GMT</pubDate>
+    </item>
+    <item>
+      <title>Bruce Momjian: Postgres Rising in Russia</title>
+      <link>http://momjian.us/main/blogs/pgblog/2014.html#November_11_2014</link>
+      <description>
+        &lt;p&gt;I just returned from &lt;a class="txt2html" href="http://momjian.us/main/events/2014.html#November_5_2014" style="text-decoration: none;"&gt;two weeks&lt;/a&gt; in Russia, and I am happy to report that
+        Postgres is experiencing strong growth there.  I have regularly complained that Russian Postgres adoption was lagging, but the
+        &lt;a class="txt2html" href="http://www.state.gov/e/eb/tfs/spi/ukrainerussia/" style="text-decoration: none;"&gt;sanctions&lt;/a&gt; have tipped the scales and moved Russia into Postgres-hyper-adoption
+        mode.  &lt;img src="http://momjian.us/main/img/blog/small_smile.png" /&gt;  New activities include:
+        &lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;A Postgres Day in Saint Petersburg in &lt;a class="txt2html" href="http://2014.pgday.ru/ru" style="text-decoration: none;"&gt;July&lt;/a&gt;
+        &lt;/li&gt;&lt;li&gt;Moscow meetings in &lt;a class="txt2html" href="http://www.meetup.com/postgresqlrussia/events/206577412/" style="text-decoration: none;"&gt;September&lt;/a&gt; and
+        &lt;a class="txt2html" href="http://www.meetup.com/postgresqlrussia/events/211094692/" style="text-decoration: none;"&gt;October&lt;/a&gt; with 150 attendees
+        &lt;/li&gt;&lt;li&gt;An October &lt;a class="txt2html" href="http://pgday.ru/en/pgmaster" style="text-decoration: none;"&gt;Postgres Day&lt;/a&gt; in Saint Petersburg
+        &lt;/li&gt;&lt;li&gt;A strong Postgres presence and booth at &lt;a class="txt2html" href="http://www.highload.ru/" style="text-decoration: none;"&gt;Highload++&lt;/a&gt;
+        &lt;/li&gt;&lt;li&gt;2015 conferences in &lt;a class="txt2html" href="http://en.pgconf.ru/" style="text-decoration: none;"&gt;Moscow&lt;/a&gt; and &lt;a class="txt2html" href="http://pgday.ru/en" style="text-decoration: none;"&gt;Saint Petersburg&lt;/a&gt;
+        &lt;/li&gt;&lt;/ul&gt;
+        &lt;p&gt;As part of my visit I spoke at &lt;a class="txt2html" href="http://www.enterprisedb.com/" style="text-decoration: none;"&gt;EnterpriseDB&lt;/a&gt; partner &lt;a class="txt2html" href="http://www.lanit.ru/en/" style="text-decoration: none;"&gt;LANIT&lt;/a&gt;.  The
+        hour-long presentation was &lt;a class="major" href="https://yadi.sk/i/nlOWZMn_cZErg" style="text-decoration: underline;"&gt;recorded&lt;/a&gt; and covers:
+        &lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;The Postgres community development process
+        &lt;/li&gt;&lt;li&gt;Comparison of Postgres to proprietary databases
+        &lt;/li&gt;&lt;li&gt;The future direction of Postgres
+        &lt;/li&gt;&lt;/ul&gt;
+      </description>
+      <guid isPermaLink="false">http://momjian.us/main/blogs/pgblog/2014.html#November_11_2014</guid>
+      <pubDate>Tue, 11 Nov 2014 22:30:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>Feng Tian: TPCH on PostgreSQL (part 3)</title>
+      <link>http://vitesse-timing-on.blogspot.com/2014/11/tpch-on-postgresql-part-3.html</link>
+      <description>Today is the biggest internet shopping day. &amp;nbsp;If you read Chinese, you may find that Alibaba posts job openings for PostgreSQL dba from time to time. &amp;nbsp; It would be interesting to find out how many transactions and/or analytic workloads inside Alibaba is handled by PostgreSQL.&lt;br /&gt;&lt;br /&gt;Back to TPCH. &amp;nbsp;Q16 is particularly tough for us to optimize. &amp;nbsp;Again, it is better to look at a simpler example,&lt;br /&gt;        &lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# create table t as select x, x % 10 as i, x % 100 as j, 'random string' || (x % 100) as s from generate_series(1, 1000000) x;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;SELECT 1000000&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 784.034 ms&lt;/span&gt;&lt;/div&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# select count(distinct i) from t group by s, j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 7991.994 ms&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-size: x-small;"&gt;&lt;span style="font-family: Times, Times New Roman, serif;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Times, Times New Roman, serif;"&gt;Grouping one million rows in 8 sec, kind of slow. &amp;nbsp;So let's try,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: 'Courier New', Courier, monospace;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# select count(i) from t group by s, j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 99.029 ms&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style="font-family: 'Courier New', Courier, monospace;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style="font-family: Times, Times New Roman, serif;"&gt;So it must be count(distinct). &amp;nbsp;Well, we wasted quite some time chasing the distinct. &amp;nbsp;Profiling, before optimizing, we should've known better. &amp;nbsp;Real reason is the select count(distinct) will trigger a sort agg instead of hash agg. &amp;nbsp; Distinct, will need some resource in aggregate function and it is very hard to cap the consumption in hash agg. &amp;nbsp; So a sort agg is used, which actually is a fine plan.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;       &lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# explain select count(distinct i) from t group by s, j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; QUERY PLAN&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;------------------------------------------------------------------------&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;GroupAggregate&amp;nbsp; (cost=117010.84..127110.84 rows=10000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; -&amp;gt;&amp;nbsp; Sort&amp;nbsp; (cost=117010.84..119510.84 rows=1000000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Sort Key: s, j&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; -&amp;gt;&amp;nbsp; Seq Scan on t&amp;nbsp; (cost=0.00..17353.00 rows=1000000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;(4 rows)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;Is sort that slow?&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# select count(distinct i) from t group by j, s;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 1418.938 ms&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;5x faster. &amp;nbsp;What is going on? &amp;nbsp; Note that we switched grouping order from &lt;span style="font-family: Courier New, Courier, monospace; font-size: x-small;"&gt;group by s, j&lt;/span&gt; to &lt;span style="font-family: Courier New, Courier, monospace; font-size: x-small;"&gt;group by j, s&lt;/span&gt;. &amp;nbsp; &amp;nbsp;These two queries are equivalent, except the order of result -- well, if you really care about ordering, you should have an order by clause. &amp;nbsp;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;The true cost lies in string comparison with collation. &amp;nbsp; The database uses utf-8 encoding and sort on text will use string comparison with collation. &amp;nbsp; When group by (s, j), we will always compare two strings. &amp;nbsp;When group by (j, s), string comparison is only executed when j are equal.&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;Finally, &amp;nbsp;to see how expensive compare with collation is,&amp;nbsp;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# select count(distinct i) from t group by decode(s, 'escape'), j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;        &lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 2831.271 ms&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;Even we go through the not so cheap decode hoop, still, almost 3x faster.&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;So what can we do in this situation?&lt;/div&gt;&lt;div class="p1"&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;If your group by clause is group by t, i; consider rewrite your query as group by i, t; &amp;nbsp; Basically, put faster (int, float, etc) data types with many distinct values first.&amp;nbsp;&lt;/li&gt;&lt;li&gt;Wait for a patch from Peter Geoghegan. &amp;nbsp;If the string has a random prefix, the patch will speed up string comparison considerably. &amp;nbsp;But, it won't help this example, because we have an common prefix. &amp;nbsp;Same common prefix problem for TPCH data. &amp;nbsp;On the other hand, these are synthetic data, and Peter's patch should help a lot in many situations.&lt;/li&gt;&lt;/ul&gt;A final remark. &amp;nbsp;Can we get rid of the sort completely? &amp;nbsp;Yes, if there is only one distinct,&lt;br /&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# explain select count(i) from (select i, j, s from t group by i, j, s) tmpt group by s, j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; QUERY PLAN&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;------------------------------------------------------------------------&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;HashAggregate&amp;nbsp; (cost=27603.00..27703.00 rows=10000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; -&amp;gt;&amp;nbsp; HashAggregate&amp;nbsp; (cost=24853.00..25853.00 rows=100000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; -&amp;gt;&amp;nbsp; Seq Scan on t&amp;nbsp; (cost=0.00..17353.00 rows=1000000 width=23)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;             &lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;(3 rows)&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;ftian=# select count(i) from (select i, j, s from t group by i, j, s) tmpt group by s, j;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;        &lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace;"&gt;Time: 106.915 ms&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;This is how fast the query can be, even though we have two HashAggregate nodes. &amp;nbsp; I wish one day, PostgreSQL planner can do this trick for me.&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;P.S We did not rewrite Q16 in our benchmark after all. &amp;nbsp;It is an interesting case that we want to keep an eye on.&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace; font-size: x-small;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;span style="font-family: Courier New, Courier, monospace; font-size: x-small;"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-657593297834561119.post-4965971896661737061</guid>
+      <pubDate>Tue, 11 Nov 2014 05:31:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Jim Mlodgenski: Synchronous Commit</title>
+      <link>http://www.openscg.com/2014/11/synchronous-commit/</link>
+      <description>
+        &lt;p&gt;While I was at PGConf.EU a couple of weeks ago in Madrid, I attended a talk by Grant McAlister discussing &lt;a href="http://www.postgresql.eu/events/schedule/pgconfeu2014/session/778-amazon-rds-for-postgresql/"&gt;Amazon RDS for PostgreSQL&lt;/a&gt;.  While it was interesting to see how Amazon had made it very simple for developers to get a production PostgreSQL instance quickly, the thing that really caught my eye was the performance benchmarks comparing the fsync and synchronous commit parameters.&lt;/p&gt;
+        &lt;p&gt;&lt;img alt="sync_commit" class="alignright size-full wp-image-3957" height="340" src="http://www.openscg.com/wp-content/uploads/2014/11/sync_commit.png" width="604" /&gt;Frighteningly, it is not that uncommon for people to turn off fsync to get a performance gain out of their PostgreSQL database. While the performance gain is dramatic, it carries the risk that your database could become corrupt. In some cases, this may be OK, but these cases are really rather rare. A more common case is a database where it is OK to lose a little data in the event of a crash. This is where synchronous commit comes in. When synchronous commit is off, the server returns back success immediately to the client, but waits to flush the data to disk for a short period of time. When the data is ultimately flushed it is still properly sync to disk so there is no chance of data corruption. The only risk if the event of a crash is that you may lose some transactions. The default setting for this window is 200ms.&lt;/p&gt;
+        &lt;p&gt;In Grant&amp;#8217;s talk, he performed a benchmark that showed turning off synchronous commit gave a bigger performance gain than turning off fsync. He performed an insert only test so I wanted to try a standard pgbench test. I didn&amp;#8217;t come up with the same results, but the I still saw a compelling case for leaving fsync on while turning off synchronous commit.&lt;/p&gt;
+        &lt;p&gt;I ran a pgbench test with 4 clients and a scaling factor of 100 on a small EC2 instance running 9.3.5. What I saw was turning off fsync resulted in a 150% performance. Turning off synchronous commit resulted in a 128% performance gain. Both are dramatic performance gains, but the synchronous commit option has a lot less risk.&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+        &lt;p&gt;Speaking of conferences, the call for papers is open for PGConf US 2015. If there is a topic you&amp;#8217;d like to present in New York in March, submit it &lt;a href="http://www.pgconf.us/2015/submit/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://www.openscg.com/?p=3956</guid>
+      <pubDate>Mon, 10 Nov 2014 20:00:18 GMT</pubDate>
+    </item>
+    <item>
+      <title>gabrielle roth: PDXPUG: November meeting in two weeks</title>
+      <link>http://pdxpug.wordpress.com/2014/11/06/pdxpug-november-meeting-in-two-weeks-2/</link>
+      <description>
+        &lt;p&gt;&lt;strong&gt;When&lt;/strong&gt;: 6-8pm Thu Nov 20, 2014&lt;br /&gt;
+        &lt;strong&gt;Where&lt;/strong&gt;: Iovation&lt;br /&gt;
+        &lt;strong&gt;What&lt;/strong&gt;: 9.4 party!	&lt;/p&gt;
+        &lt;p&gt;As discussed at last month&amp;#8217;s meeting, we&amp;#8217;re going to check out some of the new 9.4 features.  It will help if you already have 9.4 installed on your laptop, but if you&amp;#8217;re new &amp;amp; don&amp;#8217;t know how to do that, just show up &amp;amp; we&amp;#8217;ll help you out.&lt;/p&gt;
+        &lt;p&gt;If you&amp;#8217;re a Vagrant user, try this: &lt;a href="https://github.com/softwaredoug/vagrant-postgres-9.4" target="_blank"&gt;https://github.com/softwaredoug/vagrant-postgres-9.4&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Our meeting will be held at Iovation, on the 32nd floor of the US Bancorp Tower at 111 SW 5th (5th &amp;amp; Oak).  It&amp;#8217;s right on the Green &amp;amp; Yellow Max lines.  Underground bike parking is available in the parking garage;  outdoors all around the block in the usual spots.  No bikes in the office, sorry!&lt;/p&gt;
+        &lt;p&gt;Elevators open at 5:45 and building security closes access to the floor at 6:30.&lt;/p&gt;
+        &lt;p&gt;The building is on the Green &amp;amp; Yellow Max lines.  Underground bike parking is available in the parking garage;  outdoors all around the block in the usual spots.&lt;/p&gt;
+        &lt;p&gt;See you there!&lt;/p&gt;&lt;br /&gt;  &lt;a href="http://feeds.wordpress.com/1.0/gocomments/pdxpug.wordpress.com/404/" rel="nofollow"&gt;&lt;img alt="" border="0" src="http://feeds.wordpress.com/1.0/comments/pdxpug.wordpress.com/404/" /&gt;&lt;/a&gt; &lt;img alt="" border="0" height="1" src="http://pixel.wp.com/b.gif?host=pdxpug.wordpress.com&amp;#038;blog=30930172&amp;#038;post=404&amp;#038;subd=pdxpug&amp;#038;ref=&amp;#038;feed=1" width="1" /&gt;
+      </description>
+      <guid isPermaLink="false">http://pdxpug.wordpress.com/?p=404</guid>
+      <pubDate>Fri, 07 Nov 2014 03:24:24 GMT</pubDate>
+    </item>
+    <item>
+      <title>Josh Berkus: We need a webapp benchmark</title>
+      <link>http://www.databasesoup.com/2014/11/we-need-webapp-benchmark.html</link>
+      <description>I've been doing some comparative testing on different cloud platform's hosting of PostgreSQL.&amp;nbsp; And one of the deficiencies in this effort is the only benchmarking tool I have is &lt;a href="http://www.postgresql.org/docs/current/static/pgbench.html"&gt;pgbench&lt;/a&gt;, which doesn't reflect the kinds of workloads people would want to run on cloud hosting.&amp;nbsp; Don't get me wrong, pgbench does everything you could imagine with the simple Wisconsin benchmark, including statistics and sampling.&amp;nbsp;&amp;nbsp; But the core benchmark is still something which doesn't look much like the kind of Rails and Django apps I deal with on a daily basis.&lt;br /&gt;&lt;br /&gt;There's also &lt;a href="https://github.com/gurjeet/DBYardstick"&gt;TPCC-js&lt;/a&gt;, which is more sophisticated, but is ultimately still a transactional, back-office OLTP benchmark.&amp;nbsp; &lt;br /&gt;&lt;br /&gt;So I'm thinking of developing a "webapp" benchmark.&amp;nbsp; Here's what I see as concepts for such a benchmark:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;Read-mostly &lt;/li&gt;&lt;li&gt;No multi-statement transactions&lt;/li&gt;&lt;li&gt;Defined "users" concept with logins and new user registration &lt;/li&gt;&lt;li&gt;Needs a "sessions" table which is frequently updated&lt;/li&gt;&lt;li&gt;Read-write, read-only and session database connections should be separable, in order to test load-balancing optimization.&lt;/li&gt;&lt;li&gt;Queries counting, sorting and modifying content&lt;/li&gt;&lt;li&gt;Measured unit of work is the "user session" which would contain some content lookups and minor updates ("likes").&lt;/li&gt;&lt;/ul&gt;Now, one of the big questions is whether we should base this benchmark on the idea of a social networking (SN) site.&amp;nbsp; I think we should; SN sites test a number of things, including locking and joins which might not be exercised by other types of applications (and aren't by pgbench).&amp;nbsp; What do you think?&amp;nbsp; Does anyone other than me want to work on this?&lt;br /&gt;</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-7476449567742726187.post-105543878505497488</guid>
+      <pubDate>Fri, 07 Nov 2014 00:10:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Michael Paquier: pgmpc: mpd client for Postgres</title>
+      <link>http://michael.otacoo.com/postgresql-2/pgmpc-mpd-client-postgres/</link>
+      <description>
+        &lt;p&gt;Have you ever heard about &lt;a href="http://www.musicpd.org/"&gt;mpd&lt;/a&gt;? It is an open
+        source music player that works as a server-side application playing
+        music, as well as in charge of managing the database of songs, playlists.
+        It is as well able to do far more fancy stuff... Either way, mpd has a set
+        of client APIs making possible to control the operations on server called
+        libmpdclient, library being used in many client applications available
+        in the wild, able to interact with a remote mpd instance. The most used
+        being surely mpc, ncmpc and gmpc. There are as well more fancy client
+        interfaces like for example libmpdee.el, an elisp module for emacs.
+        Now, PostgreSQL has always lacked a dedicated client interface, that's
+        where &lt;a href="https://github.com/michaelpq/pg_plugins/tree/master/pgmpc"&gt;pgmpc&lt;/a&gt; fills the
+        need (is there one btw?), by providing a set of SQL functions able to
+        interact with an mpd instance, so you can control your music player
+        directly with Postgres.&lt;/p&gt;
+
+        &lt;p&gt;In order to compile it, be sure to have libmpdclient installed on your
+        system. Note as well that pgmpc is shaped as an &lt;a href="http://www.postgresql.org/docs/devel/static/extend-extensions.html"&gt;extension&lt;/a&gt;, so
+        once its source installed it needs to be enabled on a Postgres server
+        using &lt;a href="http://www.postgresql.org/docs/devel/static/sql-createextension.html"&gt;CREATE EXTENSION&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;Once installed, this list of functions, whose names are inspired from
+        the existing interface of mpc, are available.&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# \dx+ pgmpc
+        Objects in extension &amp;quot;pgmpc&amp;quot;
+        Object Description
+        ----------------------------------
+        function mpd_add(text)
+        function mpd_clear()
+        function mpd_consume()
+        function mpd_load(text)
+        function mpd_ls()
+        function mpd_ls(text)
+        function mpd_lsplaylists()
+        function mpd_next()
+        function mpd_pause()
+        function mpd_play()
+        function mpd_playlist()
+        function mpd_playlist(text)
+        function mpd_prev()
+        function mpd_random()
+        function mpd_repeat()
+        function mpd_rm(text)
+        function mpd_save(text)
+        function mpd_set_volume(integer)
+        function mpd_single()
+        function mpd_status()
+        function mpd_update()
+        function mpd_update(text)
+        (22 rows)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Currently, what can be done is to control the player, the playlists, and
+        to get back status of the player. So the interface is sufficient enough
+        for basic operations with mpd, enough to control mpd while being still
+        connected to your favorite database.&lt;/p&gt;
+
+        &lt;p&gt;Also, the connection to the instance of mpd can be controlled with the
+        following GUC parameters that can be changed by the user within a single
+        session:&lt;/p&gt;
+
+        &lt;ul&gt;
+        &lt;li&gt;pgmpc.mpd_host, address to connect to mpd instance. Default is &amp;quot;localhost&amp;quot;
+        This can be set as a local Unix socket as well.&lt;/li&gt;
+        &lt;li&gt;pgmpc.mpd_port, port to connect to mpd instance. Default is 6600.&lt;/li&gt;
+        &lt;li&gt;pgmpc.mpd_password, password to connect to mpd instance. That's optional
+        and it is of course not recommended to write it blankly in postgresql.conf.&lt;/li&gt;
+        &lt;li&gt;pgmpc.mpd_timeout, timeout switch for connection obtention. Default is
+        10s.&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p&gt;In any case, the code of this module is available in &lt;a href="https://github.com/michaelpq/pg_plugins"&gt;pg_plugins&lt;/a&gt; on github. So feel free to
+        send pull requests or comments about this module there. Patches to
+        complete the existing set of functions are as well welcome.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://michael.otacoo.com/postgresql-2/pgmpc-mpd-client-postgres/</guid>
+      <pubDate>Thu, 06 Nov 2014 06:57:47 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hubert 'depesz' Lubaczewski: How to install your own copy of explain.depesz.com</title>
+      <link>http://www.depesz.com/2014/11/06/how-to-install-your-own-copy-of-explain-depesz-com/</link>
+      <description>There are some cases where you might want to get your own copy of explain.depesz.com. You might not trust me with your explains. You might want to use it without internet access. Or you just want to play with it, and have total control over the site. Installing, while obvious to me, and recently described [&amp;#8230;]</description>
+      <guid isPermaLink="false">http://www.depesz.com/?p=2912</guid>
+      <pubDate>Thu, 06 Nov 2014 06:22:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>Shaun M. Thomas: On PostgreSQL View Dependencies</title>
+      <link>http://bonesmoses.org/2014/11/05/on-postgresql-view-dependencies/</link>
+      <description>
+        &lt;p&gt;As many seasoned DBAs might know, there&amp;#8217;s one area that PostgreSQL still manages to be highly aggravating. By this, I mean the role views have in mucking up PostgreSQL dependencies. The part that annoys me personally, is that it doesn&amp;#8217;t have to be this way.&lt;/p&gt;
+
+        &lt;p&gt;Take, for example, what happens if you try to modify a &lt;code&gt;VARCHAR&lt;/code&gt; column so that the column length is higher. We&amp;#8217;re not changing the type, or dropping the column, or anything overly complicated. Yet we&amp;#8217;re faced with this message:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;ERROR:  cannot alter type of a column used by a view or rule
+        DETAIL:  rule _RETURN on view v_change_me depends on column "too_short"
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;Though PostgreSQL tells us which view and column prompted this error, that&amp;#8217;s the last favor it provides. The only current way to fix this error is to drop the view, alter the column, then recreate the view. In a production 24/7 environment, this is extremely problematic. The system I work with handles over two-billion queries per day; there&amp;#8217;s no way I&amp;#8217;m dropping a view that the platform depends on, even in a transaction.&lt;/p&gt;
+
+        &lt;p&gt;This problem is compounded when views depend on other views. The error doesn&amp;#8217;t say so, but I defined another view named &lt;code&gt;v_change_me_too&lt;/code&gt; that depends on &lt;code&gt;v_change_me&lt;/code&gt;, yet I would never know it by the output PostgreSQL generated. Large production systems can have dozens, or even hundreds of views that depend on complex hierarchies of tables and other views. Yet there&amp;#8217;s no built-in way to identify these views, let alone modify them safely.&lt;/p&gt;
+
+        &lt;p&gt;If you want to follow along, this is the code I used to build my test case:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;CREATE TABLE change_me ( too_short VARCHAR(30) );
+        CREATE VIEW v_change_me AS SELECT * FROM change_me;
+        CREATE VIEW v_change_me_too AS SELECT * FROM v_change_me;
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;And here&amp;#8217;s the statement I used to try and make the column bigger:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;ALTER TABLE change_me ALTER too_short TYPE VARCHAR(50);
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;It turns out we can solve this for some cases, though it takes a very convoluted path. The first thing we need to do is identify all of the views in the dependency chain. To do this, we need a recursive query. Here&amp;#8217;s one that should find all the views in our sample chain, starting with the table itself:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;WITH RECURSIVE vlist AS (
+        SELECT c.oid::REGCLASS AS view_name
+        FROM pg_class c
+        WHERE c.relname = 'change_me'
+        UNION ALL
+        SELECT DISTINCT r.ev_class::REGCLASS AS view_name
+        FROM pg_depend d
+        JOIN pg_rewrite r ON (r.oid = d.objid)
+        JOIN vlist ON (vlist.view_name = d.refobjid)
+        WHERE d.refobjsubid != 0
+        )
+        SELECT * FROM vlist;
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;If we execute that query, both &lt;code&gt;v_change_me&lt;/code&gt; and &lt;code&gt;v_change_me_too&lt;/code&gt; will show up in the results. Keep in mind that in actual production systems, this list can be much longer. For systems that can survive downtime, this list can be passed to &lt;code&gt;pg_dump&lt;/code&gt; to obtain all of the view definitions. That will allow a DBA to drop the views, modify the table, then accurately recreate them.&lt;/p&gt;
+
+        &lt;p&gt;For simple cases where we&amp;#8217;re just extending an existing column, we can take advantage of the fact the &lt;code&gt;pg_attribute&lt;/code&gt; catalog table allows direct manipulation. In PostgreSQL, TEXT-type columns have a length 4-bytes longer than the column limit. So we simply reuse the recursive query and extend that length:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;WITH RECURSIVE vlist AS (
+        SELECT c.oid::REGCLASS AS view_name
+        FROM pg_class c
+        WHERE c.relname = 'change_me'
+        UNION ALL
+        SELECT DISTINCT r.ev_class::REGCLASS AS view_name
+        FROM pg_depend d
+        JOIN pg_rewrite r ON (r.oid = d.objid)
+        JOIN vlist ON (vlist.view_name = d.refobjid)
+        WHERE d.refobjsubid != 0
+        )
+        UPDATE pg_attribute a
+        SET a.atttypmod = 50 + 4
+        FROM vlist
+        WHERE a.attrelid = vlist.view_name
+        AND a.attname = 'too_short';
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;Now, this isn&amp;#8217;t exactly a perfect solution. If views alias the column name, things get a lot more complicated. We have to modify the recursive query to return both the view name, and the column alias. Unfortunately the &lt;code&gt;pg_depend&lt;/code&gt; view always sets the &lt;code&gt;objsubid&lt;/code&gt; column to 0 for views. The &lt;code&gt;objsubid&lt;/code&gt; column is used to determine which which column corresponds to the aliased column.&lt;/p&gt;
+
+        &lt;p&gt;Without having this value, it becomes impossible to know what to modify in &lt;code&gt;pg_attribute&lt;/code&gt; for the views. In effect, instead of being a doubly-linked list, &lt;code&gt;pg_depend&lt;/code&gt; is a singly-linked list we can only follow &lt;em&gt;backwards&lt;/em&gt;. So we can discover what the aliases depend on, but not what the aliases &lt;em&gt;are&lt;/em&gt;. I can&amp;#8217;t really think of any reason this would be set for tables, but not for views.&lt;/p&gt;
+
+        &lt;p&gt;This means, of course, that large production systems will still need to revert to the DROP -&gt; ALTER -&gt; CREATE route for column changes to dependent views. But why? PostgreSQL knows the entire dependency chain. Why is it impossible to modify these in an atomic transaction context? If I have one hundred views on a table, why do I have to &lt;em&gt;drop all of them&lt;/em&gt; before modifying the table? And, again, the type of modification in this example is extremely trivial; we&amp;#8217;re not going from a TEXT to an INT, or anything that would require drastically altering the view logic.&lt;/p&gt;
+
+        &lt;p&gt;For highly available databases, this makes it extremely difficult to use PostgreSQL without some type of short outage. Column modifications, while not common, are a necessary evil. Since it would be silly to recommend never using views, we have to live with downtime imposed by the database software. Now that PostgreSQL is becoming popular in enterprise settings, issues like this are gaining more visibility.&lt;/p&gt;
+
+        &lt;p&gt;Hopefully this is one of those easy fixes they can patch into 9.5 or 9.6. If not, I can see it hampering adoption.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://bonesmoses.org/?p=945</guid>
+      <pubDate>Wed, 05 Nov 2014 23:20:41 GMT</pubDate>
+    </item>
+    <item>
+      <title>Marko Tiikkaja: PostgreSQL gotcha of the week, week 45</title>
+      <link>http://johtopg.blogspot.com/2014/11/postgresql-gotcha-of-week-week-45_6.html</link>
+      <description>
+        Something happened earlier this week (or maybe it was last week, I forget), and I was quite perplexed for a good 30 seconds, so I thought I'd try and make this problem a bit more well-known.  Consider the following schema:
+
+        CREATE TABLE blacklist (
+        person text
+        );
+
+        INSERT INTO blacklist VALUES ('badguy');
+
+        CREATE TABLE orders (
+        orderid serial PRIMARY KEY,
+        person text,
+        amount numeric
+        );
+      </description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-265587150912543268.post-8119831386200547260</guid>
+      <pubDate>Wed, 05 Nov 2014 23:03:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Marko Tiikkaja: PostgreSQL gotcha of the week, week 45</title>
+      <link>http://johtopg.blogspot.com/2014/11/postgresql-gotcha-of-week-week-45.html</link>
+      <description>
+        Something happened earlier this week (or maybe it was last week, I forget), and I was quite perplexed for a good 30 seconds, so I thought I'd try and make this problem a bit more well-known.  Consider the following schema:
+
+        CREATE TABLE blacklist (
+        person text
+        );
+
+        INSERT INTO blacklist VALUES ('badguy');
+
+        CREATE TABLE orders (
+        orderid serial PRIMARY KEY,
+        person text,
+        amount numeric
+        );
+      </description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-265587150912543268.post-5950759772097050615</guid>
+      <pubDate>Wed, 05 Nov 2014 22:46:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hubert 'depesz' Lubaczewski: Changes on explain.depesz.com</title>
+      <link>http://www.depesz.com/2014/11/05/changes-on-explain-depesz-com-4/</link>
+      <description>Uploaded new version to the server &amp;#8211; straight from GitHub. There are two changes &amp;#8211; one visible, and one not really. The invisible change, first, is one for people hosting explain.depesz.com on their own. As you perhaps know you can get sources of explain.depesz.com and install it on any box you want (as log as [&amp;#8230;]</description>
+      <guid isPermaLink="false">http://www.depesz.com/?p=2908</guid>
+      <pubDate>Wed, 05 Nov 2014 15:43:14 GMT</pubDate>
+    </item>
+    <item>
+      <title>Peter Eisentraut: Checking whitespace with Git</title>
+      <link>http://peter.eisentraut.org/blog/2014/11/04/checking-whitespace-with-git</link>
+      <description>
+        &lt;p&gt;&lt;a href="http://blog.codinghorror.com/whitespace-the-silent-killer/"&gt;Whitespace matters&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;Git has support for checking whitespace in patches.  &lt;code&gt;git apply&lt;/code&gt; and &lt;code&gt;git am&lt;/code&gt; have the option &lt;code&gt;--whitespace&lt;/code&gt;, which can be used to warn or error about whitespace errors in the patches about to be applied. &lt;code&gt;git diff&lt;/code&gt; has the option &lt;code&gt;--check&lt;/code&gt; to check a change for whitespace errors.&lt;/p&gt;
+
+        &lt;p&gt;But all this assumes that your existing code is cool, and only new changes are candidates for problems.  Curiously, it is a bit hard to use those same tools for going back and checking whether an existing tree satisfies the whitespace rules applied to new patches.&lt;/p&gt;
+
+        &lt;p&gt;The core of the whitespace checking is in &lt;code&gt;git diff-tree&lt;/code&gt;.  With the &lt;code&gt;--check&lt;/code&gt; option, you can check the whitespace in the diff between two objects.&lt;/p&gt;
+
+        &lt;p&gt;But how do you check the whitespace of a tree rather than a diff?  Basically, you want&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;git diff-tree --check EMPTY HEAD
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;except there is no &lt;code&gt;EMPTY&lt;/code&gt;.  But you can compute the hash of an empty Git tree:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;git hash-object -t tree /dev/null
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;So the full command is&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;If have this as an alias in my &lt;code&gt;~/.gitconfig&lt;/code&gt;:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;[alias]
+        check-whitespace = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;Then running&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;git check-whitespace
+        &lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;can be as easy as running &lt;code&gt;make&lt;/code&gt; or &lt;code&gt;git commit&lt;/code&gt;.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://peter.eisentraut.org/blog/2014/11/04/checking-whitespace-with-git</guid>
+      <pubDate>Wed, 05 Nov 2014 01:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Bruce Momjian: 2015 Postgres Conferences</title>
+      <link>http://momjian.us/main/blogs/pgblog/2014.html#November_4_2014</link>
+      <description>
+        &lt;p&gt;Due to the increased popularity of Postgres, conference organizers are more confident about future conferences and are announcing their
+        conference dates earlier, perhaps also to attract speakers.  These are the conferences already announced for 2015:
+        &lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;February, &lt;a class="txt2html" href="https://fosdem.org/2015/" style="text-decoration: none;"&gt;FOSDEM&lt;/a&gt;, Brussels (dedicated Postgres day)
+        &lt;/li&gt;&lt;li&gt;February, &lt;a class="txt2html" href="http://en.pgconf.ru/" style="text-decoration: none;"&gt;PgConf.Russia&lt;/a&gt;, Moscow
+        &lt;/li&gt;&lt;li&gt;February, &lt;a class="txt2html" href="http://www.socallinuxexpo.org/scale13x" style="text-decoration: none;"&gt;SCALE&lt;/a&gt;, Los Angeles (dedicated Postgres day)
+        &lt;/li&gt;&lt;li&gt;March, &lt;a class="txt2html" href="http://www.pgconf.us/2015/" style="text-decoration: none;"&gt;PGConf US&lt;/a&gt;, New York City
+        &lt;/li&gt;&lt;li&gt;June, &lt;a class="txt2html" href="https://www.pgcon.org/2015/" style="text-decoration: none;"&gt;PGCon&lt;/a&gt;, Ottawa
+        &lt;/li&gt;&lt;li&gt;July, &lt;a class="txt2html" href="http://pgday.ru/en" style="text-decoration: none;"&gt;PG Day'15 Russia&lt;/a&gt;, Saint Petersburg
+        &lt;/li&gt;&lt;li&gt;October, &lt;a class="txt2html" href="http://2015.pgconf.eu/" style="text-decoration: none;"&gt;PostgreSQL Conference Europe&lt;/a&gt;, Vienna
+        &lt;/li&gt;&lt;li&gt;November, &lt;a class="txt2html" href="http://pgbr.postgresql.org.br/2015/" style="text-decoration: none;"&gt;pgbr&lt;/a&gt;, Porto Alegre, Brazil
+        &lt;/li&gt;&lt;/ul&gt;
+        &lt;p&gt;I don't remember ever seeing this many Postgres conferences scheduled this far in advance.  (Most of these are listed on the Postgres Wiki
+        &lt;a class="txt2html" href="https://wiki.postgresql.org/wiki/Events" style="text-decoration: none;"&gt;Events&lt;/a&gt; page.)  If you know of any other scheduled 2015 conferences, please post the details
+        as a comment below.
+        &lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://momjian.us/main/blogs/pgblog/2014.html#November_4_2014</guid>
+      <pubDate>Tue, 04 Nov 2014 18:45:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>Jehan-Guillaume (ioguix) de Rorthais: Btree bloat query - part 4</title>
+      <link>http://blog.ioguix.net/postgresql/2014/11/04/Btree-bloat-query-part-4.html</link>
+      <description>
+        &lt;p&gt;Thanks to the various PostgreSQL environments we have under monitoring at Dalibo, these Btree bloat estimation queries keeps challenging me occasionally because of statistics deviation&amp;#8230;or bugs.&lt;/p&gt;
+        &lt;p&gt;For people who visit this blog for the first time, don&amp;#8217;t miss the three previous parts, stuffed with some interesting infos about these queries &lt;b&gt;and&lt;/b&gt; BTree indexes: &lt;a href="http://blog.ioguix.net/postgresql/2014/03/28/Playing-with-indexes-and-better-bloat-estimate.html"&gt;part 1&lt;/a&gt;, &lt;a href="http://blog.ioguix.net/postgresql/2014/06/24/More-work-on-index-bloat-estimation-query.html"&gt;part 2&lt;/a&gt; and &lt;a href="http://blog.ioguix.net/postgresql/2014/09/09/Btree-bloat-query-changelog-part-3.html"&gt;part 3&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;For people in a hurry, here are the links to the queries:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;for 7.4: &lt;a href="https://gist.github.com/ioguix/dfa41eb0ef73e1cbd943"&gt;https://gist.github.com/ioguix/dfa41eb0ef73e1cbd943&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;for 8.0 and 8.1: &lt;a href="https://gist.github.com/ioguix/5f60e24a77828078ff5f"&gt;https://gist.github.com/ioguix/5f60e24a77828078ff5f&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;for 8.2 and more: &lt;a href="https://gist.github.com/ioguix/c29d5790b8b93bf81c27"&gt;https://gist.github.com/ioguix/c29d5790b8b93bf81c27&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h2&gt;Columns has been ignored&lt;/h2&gt;
+        &lt;p&gt;In two different situations, some index fields were just ignored by the query:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;after renaming the field in the table&lt;/li&gt;
+        &lt;li&gt;if the index field was an expression&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;I cheated a bit for the first fix, looking at psql&amp;#8217;s answer to this question (thank you &lt;code&gt;-E&lt;/code&gt;).&lt;/p&gt;
+        &lt;p&gt;The second one was an easy fix, but sadly only for version 8.0 and more. It seems to me there&amp;#8217;s no solution for 7.4.&lt;/p&gt;
+        &lt;p&gt;These bugs have the same results: very bad estimation. An index field is ignored in both cases, s the bloat sounds much bigger with the old version of the query. Here is a demo with an index on expression:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;index&lt;/span&gt; &lt;span class="n"&gt;test_expression&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rental_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rental_id&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="go"&gt;CREATE INDEX&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;analyze&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;ANALYZE&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;old/btree_bloat.sql-20141022&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |        bloat_ratio         | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+----------------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test    | test_expression |    974848 |         335872 |     638976 |        65.5462184873949580 | f&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Most of this 65% bloat estimation are actually the data of the missing field. The result is much more coherent with the latest version of the query for a freshly created index, supposed to have around 10% of bloat as showed in the 2nd query:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;sql/btree_bloat.sql&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |   bloat_ratio    | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test    | test_expression |    974848 |         851968 |     122880 | 12.6050420168067 | f&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;100&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stattuple&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pgstatindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avg_leaf_density&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;bloat_ratio&lt;/span&gt;
+        &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_class&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'test_expression'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;     relname     | bloat_ratio &lt;/span&gt;
+        &lt;span class="go"&gt;-----------------+-------------&lt;/span&gt;
+        &lt;span class="go"&gt; test_expression |       10.33&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2&gt;Wrong estimation for varlena types&lt;/h2&gt;
+        &lt;p&gt;After fixing the query for indexes on expression, I noticed some negative bloat estimation for the biggest ones: the real index was smaller than the estimated one!&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;test3&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;generate_series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;10000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;SELECT 10000000&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;index&lt;/span&gt; &lt;span class="k"&gt;on&lt;/span&gt; &lt;span class="n"&gt;test3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+        &lt;span class="go"&gt;CREATE INDEX&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;~/sql/old/btree_bloat.sql-20141027&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |     bloat_ratio     | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+---------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test3   | test3_i_md5_idx | 590536704 |      601776128 |  -11239424 | -1.9032557881448805 | f&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this version of the query, I am computing and adding the headers length of varlena types (text, bytea, etc) to the statistics(see &lt;a href="http://blog.ioguix.net/postgresql/2014/09/09/Btree-bloat-query-changelog-part-3.html"&gt;part 3&lt;/a&gt;). I was wrong.&lt;/p&gt;
+        &lt;p&gt;Taking the &amp;#8220;text&amp;#8221; type as example, PostgreSQL adds a one byte header to the value if it is not longer than 127, and a 4 bytes one for bigger ones. Looking closer to the statistic values because of this negative bloat, I realized that the headers was already added to them. As a demo, take a &lt;code&gt;md5&lt;/code&gt; string of 32 bytes long. In the following results, we can see the average length from &lt;code&gt;pg_stats&lt;/code&gt; is &lt;code&gt;32+1&lt;/code&gt; for one md5, and &lt;code&gt;4*32+4&lt;/code&gt; for a string of 4 concatenated md5, supposed to be 128 byte long:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="k"&gt;table&lt;/span&gt; &lt;span class="n"&gt;test2&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;repeat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;md5&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;generate_series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;SELECT 5&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;analyze&lt;/span&gt; &lt;span class="n"&gt;test2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;ANALYZE&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="n"&gt;tablename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;avg_width&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;pg_stats&lt;/span&gt; &lt;span class="k"&gt;where&lt;/span&gt; &lt;span class="n"&gt;tablename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'test2'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt; tablename | attname | avg_width &lt;/span&gt;
+        &lt;span class="go"&gt;-----------+---------+-----------&lt;/span&gt;
+        &lt;span class="go"&gt; test2     | i       |         4&lt;/span&gt;
+        &lt;span class="go"&gt; test2     | md5     |        33&lt;/span&gt;
+        &lt;span class="go"&gt; test2     | repeat  |       132&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After removing this part of the query, stats for &lt;code&gt;test3_i_md5_idx&lt;/code&gt; are much better:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="mf"&gt;100&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stattuple&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pgstatindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avg_leaf_density&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;bloat_ratio&lt;/span&gt;
+        &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_class&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'test3_i_md5_idx'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;     relname     | bloat_ratio &lt;/span&gt;
+        &lt;span class="go"&gt;-----------------+-------------&lt;/span&gt;
+        &lt;span class="go"&gt; test3_i_md5_idx |       10.01&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;~/sql/old/btree_bloat.sql-20141028&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |     bloat_ratio     | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+---------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test3   | test3_i_md5_idx | 590536704 |      521535488 |   69001216 | 11.6844923495221052 | f&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a nice bug fix &lt;span class="caps"&gt;AND&lt;/span&gt; one complexity out of the query. Code simplification is always a good news :)&lt;/p&gt;
+        &lt;h2&gt;Adding a bit of Opaque Data&lt;/h2&gt;
+        &lt;p&gt;When studying the Btree layout, I forgot about one small non-data area in index pages: the &amp;#8220;Special space&amp;#8221;, aka. &amp;#8220;Opaque Data&amp;#8221; in code sources. The previous bug took me back on &lt;a href="http://www.postgresql.org/docs/current/static/storage-page-layout.html"&gt;this doc page&lt;/a&gt; where I remembered I should probably pay attention to this space.&lt;/p&gt;
+        &lt;p&gt;This is is a small space on each pages reserved to the access method so it can store whatever it needs for its own purpose. As instance, in the case of a Btree index, this &amp;#8220;special space&amp;#8221; is 16 bytes long and used (among other things) to reference both siblings of the page in the tree. Ordinary tables have no opaque data, so no special space (good, I &amp;#8217;ll not have to fix this bug in my &lt;a href="http://blog.ioguix.net/postgresql/2014/09/10/Bloat-estimation-for-tables.html"&gt;Table bloat estimation query&lt;/a&gt;).&lt;/p&gt;
+        &lt;p&gt;This small bug is not as bad for stats than previous ones, but fixing it definitely help the bloat estimation accuracy. Using the previous demo on &lt;code&gt;test3_i_md5_idx&lt;/code&gt;, here is the comparison of real bloat, estimation without considering the special space and estimation considering it:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-psql"&gt;&lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="mf"&gt;100&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stattuple&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pgstatindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;relname&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="mf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;avg_leaf_density&lt;/span&gt; &lt;span class="k"&gt;AS&lt;/span&gt; &lt;span class="n"&gt;bloat_ratio&lt;/span&gt;
+        &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;pg_class&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;relname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'test3_i_md5_idx'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="go"&gt;     relname     | bloat_ratio &lt;/span&gt;
+        &lt;span class="go"&gt;-----------------+-------------&lt;/span&gt;
+        &lt;span class="go"&gt; test3_i_md5_idx |       10.01&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;~/sql/old/btree_bloat.sql-20141028&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |     bloat_ratio     | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+---------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test3   | test3_i_md5_idx | 590536704 |      521535488 |   69001216 | 11.6844923495221052 | f&lt;/span&gt;
+
+        &lt;span class="gp"&gt;postgres@pagila=#&lt;/span&gt; &lt;span class="kp"&gt;\i&lt;/span&gt; &lt;span class="ss"&gt;~/sql/btree_bloat.sql&lt;/span&gt;
+        &lt;span class="go"&gt; current_database | schemaname | tblname |     idxname     | real_size | estimated_size | bloat_size |   bloat_ratio    | is_na &lt;/span&gt;
+        &lt;span class="go"&gt;------------------+------------+---------+-----------------+-----------+----------------+------------+------------------+-------&lt;/span&gt;
+        &lt;span class="go"&gt; pagila           | public     | test3   | test3_i_md5_idx | 590536704 |      525139968 |   65396736 | 11.0741187731491 | f&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is only an approximative 5% difference for the estimated size of this particular index.&lt;/p&gt;
+        &lt;h2&gt;Conclusion&lt;/h2&gt;
+        &lt;p&gt;I never mentioned it before, but these queries are used in &lt;a href="https://github.com/OPMDG/check_pgactivity"&gt;check_pgactivity&lt;/a&gt; (a nagios plugin for PostgreSQL), under the checks &amp;#8220;table_bloat&amp;#8221; and &amp;#8220;btree_bloat&amp;#8221;. &lt;a href="https://github.com/OPMDG/check_pgactivity/releases"&gt;The latest version&lt;/a&gt; of this tool already include these fixes. I might write an article about &amp;#8220;check_pgactivity&amp;#8221; at some point.&lt;/p&gt;
+        &lt;p&gt;As it is not really convenient for most of you to follow the updates on my gists, I keep writing here about my work on these queries. I should probably add some version-ing on theses queries now and find a better way to communicate about them at some point.&lt;/p&gt;
+        &lt;p&gt;As a first step, after a discussion with (one of?) the author of &lt;a href="http://zalando.github.io/PGObserver/"&gt;pgObserver&lt;/a&gt; during the latest &lt;a href="http://2014.pgconf.eu"&gt;pgconf.eu&lt;/a&gt;, I added these links to the following PostgreSQL wiki pages:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href="https://wiki.postgresql.org/wiki/Index_Maintenance#New_query"&gt;https://wiki.postgresql.org/wiki/Index_Maintenance#New_query&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="https://wiki.postgresql.org/wiki/Show_database_bloat"&gt;https://wiki.postgresql.org/wiki/Show_database_bloat&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;Cheers, happy monitoring, happy &lt;span class="caps"&gt;REINDEX&lt;/span&gt;-ing!&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://blog.ioguix.net/postgresql/2014/11/04/Btree-bloat-query-part-4.html</guid>
+      <pubDate>Tue, 04 Nov 2014 11:39:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Feng Tian: TPCH on PostgreSQL (Part 2)</title>
+      <link>http://vitesse-timing-on.blogspot.com/2014/11/tpch-on-postgresql-part-2.html</link>
+      <description>CTE is a great feature.&lt;br /&gt;&lt;br /&gt;We also need to rewrite Q20 extensively. &amp;nbsp; We haven't really tried out best, and we believe we can unroll the three subqueries into outer joins, but it is mind boggling. &amp;nbsp; The WITH clause (Common Table Expression) comes to rescue. &amp;nbsp; CTE allows one to write simple, clear, easy to understand steps in SQL. &amp;nbsp;This is very much like writing query in Pig [1] (or Quel, for old timers), except with a better syntax (and it is standard).&lt;br /&gt;&lt;br /&gt;What one need to beware, is that WITH clause is a optimization barrier in PostgreSQL, that is, the planner will optimize each CTE separately and will not consider global optimizations. &amp;nbsp;This is both good and bad. &amp;nbsp; One can use this feature to reduce planner search space and "force" a plan (for example, join ordering). &amp;nbsp; But on the other hand, more than often, the optimizer (or planner) is smarter than the programmer. &amp;nbsp;&lt;br /&gt;&lt;br /&gt;Let's look at the following simple example,&lt;br /&gt;&lt;br /&gt;create table t as select i, i&amp;nbsp;+ 1 as j from generate_series(1, 10000000) i;&lt;br /&gt;create index ti on t(i);&lt;br /&gt;&lt;br /&gt;&lt;div class="p1"&gt;ftian=# explain select * from t where i = 10 and j = 100;&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; QUERY PLAN&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div class="p1"&gt;-----------------------------------------------------------------------&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;Bitmap Heap Scan on t&amp;nbsp; (cost=927.50..48029.26 rows=250 width=8)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; Recheck Cond: (i = 10)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; Filter: (j = 100)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; -&amp;gt;&amp;nbsp; Bitmap Index Scan on ti&amp;nbsp; (cost=0.00..927.43 rows=50000 width=0)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Index Cond: (i = 10)&lt;/div&gt;&lt;br /&gt;&lt;div class="p1"&gt;(5 rows)&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;ftian=# explain with x as (select * from t where j = 100) select * from x where i = 10;&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; QUERY PLAN &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div class="p1"&gt;--------------------------------------------------------------&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;CTE Scan on x&amp;nbsp; (cost=169247.81..169247.83 rows=1 width=8)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; Filter: (i = 10)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; CTE x&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; -&amp;gt;&amp;nbsp; Seq Scan on t&amp;nbsp; (cost=0.00..169247.81 rows=1 width=8)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Filter: (j = 100)&lt;/div&gt;&lt;div class="p1"&gt;(5 rows)&lt;/div&gt;&lt;div class="p1"&gt;                &lt;/div&gt;&lt;div class="p2"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p2"&gt;Note that in the second query, planner is not able to utilize the index. &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div class="p2"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p2"&gt;Closely related to WITH clause is view. &amp;nbsp; One can create views one by one to achieve what WITH clauses do, but this is much more intrusive in the sense that it modifies catalog. &amp;nbsp; On the other had, view is not an optimization barrier. &amp;nbsp;For example,&lt;/div&gt;&lt;div class="p2"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p2"&gt;create view vt as select * from t where j = 100;&lt;/div&gt;&lt;div class="p1"&gt;ftian=# explain select * from vt where i = 10;&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; QUERY PLAN&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div class="p1"&gt;------------------------------------------------------------&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;Index Scan using ti on t&amp;nbsp; (cost=0.43..8.46 rows=1 width=8)&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; Index Cond: (i = 10)mi&lt;/div&gt;&lt;div class="p1"&gt;&amp;nbsp;&amp;nbsp; Filter: (j = 100)&lt;/div&gt;&lt;div class="p2"&gt;             &lt;/div&gt;&lt;div class="p1"&gt;(3 rows)&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;The index ti is used, no problem. &amp;nbsp; But can someone explain why this produces a different plan? &amp;nbsp;It uses Index Scan instead of Bitmap Index Scan. &amp;nbsp; Well, optimizer is really fun.&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="p1"&gt;&lt;br /&gt;&lt;/div&gt;[1] http://pig.apache.org</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-657593297834561119.post-3965995955212759419</guid>
+      <pubDate>Tue, 04 Nov 2014 08:17:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>gabrielle roth: PgConf.EU recap</title>
+      <link>http://gorthx.wordpress.com/2014/11/03/pgconf-eu-recap/</link>
+      <description>I&amp;#8217;m safely home from PgConf.EU. Madrid at this time of year was glorious, particularly to this Portlander. (I came home to a steady 12*C and rainy for the next week or &amp;#8230; so ;)) We had over 300 attendees, making this the biggest Postgres conference to date, I hear. Of course, I couldn&amp;#8217;t get to [&amp;#8230;]&lt;img alt="" border="0" height="1" src="http://pixel.wp.com/b.gif?host=gorthx.wordpress.com&amp;#038;blog=32848600&amp;#038;post=996&amp;#038;subd=gorthx&amp;#038;ref=&amp;#038;feed=1" width="1" /&gt;</description>
+      <guid isPermaLink="false">http://gorthx.wordpress.com/?p=996</guid>
+      <pubDate>Tue, 04 Nov 2014 01:20:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>Andrew Dunstan: Assignment beats SELECT INTO</title>
+      <link>http://adpgtech.blogspot.com/2014/11/assignment-beats-select-into.html</link>
+      <description>While working on some customer code, I noticed that they have a lot of code that reads like this:&lt;br /&gt;&lt;blockquote&gt;&lt;pre&gt;SELECT a,b,c&lt;br /&gt;INTO foo.x, foo,y, foo.z;&lt;/pre&gt;&lt;/blockquote&gt;I wondered why they were doing it that way, and if it might be easier to read if it was just:&lt;br /&gt;&lt;blockquote&gt;&lt;pre&gt;foo := (a,b,c);&lt;/pre&gt;&lt;/blockquote&gt;Now, these aren't quite the same, especially if foo has more than three fields. But even that could be got around.&lt;br /&gt;&lt;br /&gt;But before I tried this out I decided to see how they performed. Here's what happened:&lt;br /&gt;&lt;blockquote&gt;&lt;pre&gt;andrew=# do $x$ &lt;br /&gt;declare &lt;br /&gt;   r abc; &lt;br /&gt;begin &lt;br /&gt;   for i in 1 .. 10000000 &lt;br /&gt;   loop &lt;br /&gt;      select 'a','b',i into r.x,r.y,r.z; &lt;br /&gt;   end loop; &lt;br /&gt;end; &lt;br /&gt;$x$;&lt;br /&gt;DO&lt;br /&gt;Time: 63731.434 ms&lt;/pre&gt;&lt;/blockquote&gt;&lt;blockquote&gt;&lt;pre&gt;andrew=# do $x$ &lt;br /&gt;declare &lt;br /&gt;   r abc; &lt;br /&gt;begin &lt;br /&gt;   for i in 1 .. 10000000 &lt;br /&gt;   loop &lt;br /&gt;      r := ('a','b',i); &lt;br /&gt;   end loop; &lt;br /&gt;end; &lt;br /&gt;$x$;&lt;br /&gt;DO&lt;br /&gt;Time: 18744.151 ms&lt;/pre&gt;&lt;/blockquote&gt;That's a very big difference! Direct assignment takes less than 30% of the time that SELECT INTO takes.&lt;br /&gt;&lt;br /&gt;I'm going to dig into why this happens, but meanwhile, I have quite a lot of low hanging performance fruit to pick as a result of this.</description>
+      <guid isPermaLink="false">tag:blogger.com,1999:blog-2356137376934964551.post-6917504083086236814</guid>
+      <pubDate>Mon, 03 Nov 2014 18:41:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Josh Berkus: Finding Foreign Keys with No Indexes</title>
+      <link>http://www.databasesoup.com/2014/11/finding-foreign-keys-with-no-indexes.html</link>
+      <description>Unlike some other SQL databases, PostgreSQL does &lt;u&gt;not&lt;/u&gt; automatically create indexes on the "child" (in formal language "referencing") side of a foreign key.&amp;nbsp; There are some good reasons for this (see below), but it does give users another opportunity to forget something, which is indexing the foreign keys (FKs) that need it.&amp;nbsp; But which ones need it?&amp;nbsp; Well, fortunately, you can interrogate the system catalogs and find out.&lt;br /&gt;&lt;br /&gt;I have added &lt;a href="https://github.com/pgexperts/pgx_scripts/blob/master/indexes/fk_no_index.sql"&gt;a query for finding foreign keys without indexes&lt;/a&gt; to pgx_scripts.&amp;nbsp; Indexes on the "parent", or "referenced" side of the FK are automatically indexed (they have to be, because they need to be unique), so we won't talk about them further.&lt;br /&gt;&lt;br /&gt;Now, in order to understand how to interpret this, you have to understand why you would or would not have an index on an FK, and what sort of indexes are valid.&amp;nbsp; There's two times that indexes on the child side of FKs are used:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;when doing JOIN and lookup queries using the FK column&lt;/li&gt;&lt;li&gt;when updating or deleting a row from the "parent" table&lt;/li&gt;&lt;/ul&gt;The second occasion is news to some DBAs.&amp;nbsp; The way it works is this: before letting you delete or change a row in the "parent" table, Postgres has to verify that there are no rows in the "child" table referencing the FK value that might be going away.&amp;nbsp; If there are, it needs to perform the action you have defined (such as CASCADE, SET NULL or RESTRICT).&amp;nbsp; If the "child" table is large, this can be substantially speeded up by having an index on the FK column.&lt;br /&gt;&lt;br /&gt;This means that it's important to have an index on the child side of the FK if any of the following are true: &lt;br /&gt;&lt;ul&gt;&lt;li&gt;The child table is large and the parent table gets updates/deletes&lt;/li&gt;&lt;li&gt;The parent table is large and the FK is used for JOINs&lt;/li&gt;&lt;li&gt;The child table is large and the FK is used to filter (WHERE clause) records on the child table&lt;/li&gt;&lt;/ul&gt;This means most FKs, but not all of them.&amp;nbsp; If both tables are small, or if the parent table is small and the FK is used only to prevent bad data entry, then there's no reason to index it.&amp;nbsp; Also, if the FK is very low cardinality (like, say, only four possible values) then it's probably also a waste of resources to index it.&lt;br /&gt;&lt;br /&gt;Now you're ready to run the query on your own database and look at the results. The query tries to filter for the best indexing candidates, but it is just a query and you need to use your judgement on what you know about the tables.&amp;nbsp; The query also filters for either the parent or child table being larger than 10MB.&lt;br /&gt;&lt;br /&gt;Now, you might say "but I have an index on column Y" and wonder why it's appearing on the report.&amp;nbsp;&amp;nbsp; That's probably because the FK does match the first columns of the index.&amp;nbsp; For example, an index on ( name, team_id ) cannot be used for an FK on team_id.&lt;br /&gt;&lt;br /&gt;You may notice a 2nd section of the report called "questionable indexes".&amp;nbsp; These are FKs which have an index available, but that index may not be usable for JOINs and constraint enforcement, or may be very inefficient.&amp;nbsp; This includes:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;Non-BTree indexes.&amp;nbsp; Currently other types of indexes can't be used  for FK enforcement, although that is likely to change in future  Postgres versions.&amp;nbsp; But they can sometimes be used for joins.&lt;/li&gt;&lt;li&gt;Indexes with more than one column in addition to the FK columns.&amp;nbsp; These indexes can be used for FKs, but they may be very inefficient at it due to the bigger size and extra index levels.&lt;/li&gt;&lt;li&gt;Partial indexes (i.e. INDEX ... WHERE).&amp;nbsp; In general, these cannot be used for FK enforcement, but they can sometimes be used for joins.&lt;/li&gt;&lt;/ul&gt;It's not quite as clear when you want to add to, or replace those indexes.&amp;nbsp; My advice is to start with the missing indexes and then move on to the more nuanced cases.&lt;br /&gt;&lt;ul&gt;&lt;/ul&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-7476449567742726187.post-2870238799507197539</guid>
+      <pubDate>Sat, 01 Nov 2014 17:25:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Michael Paquier: The Blackhole Extension</title>
+      <link>http://michael.otacoo.com/postgresql-2/blackhole-extension/</link>
+      <description>
+        &lt;p&gt;Behind this eye-catching title is an &lt;a href="http://www.postgresql.org/docs/devel/static/extend-extensions.html"&gt;extension&lt;/a&gt; called
+        blackhole that I implemented yesterday, tired of needing to always structure
+        a fresh extension when needing one (well copying one from Postgres contrib/
+        would be fine as well). Similarly to &lt;a href="https://bitbucket.org/adunstan/blackhole_fdw/src"&gt;blackhole_fdw&lt;/a&gt; that is aimed to be an
+        extension for a foreign-data wrapper, blackhole is an extension wanted as
+        minimalistic as possible that can be used as a base template to develop a
+        Postgres extension in C.&lt;/p&gt;
+
+        &lt;p&gt;When using it for your own extension, simply copy its code, create a new git
+        branch or whatever, and then replace the keyword blackhole by something you
+        want in the code. Note as well that the following files need to be renamed:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;blackhole--1.0.sql
+        blackhole.c
+        blackhole.control
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Once installed in a vanilla state, this extension does not really do much, as
+        it only contains a C function called blackhole, able to do the following
+        non-fancy thing:&lt;/p&gt;
+        &lt;div class="highlight"&gt;&lt;pre&gt;&lt;code class="language-text"&gt;=# \dx+ blackhole
+        Objects in extension &amp;quot;blackhole&amp;quot;
+        Object Description
+        ----------------------
+        function blackhole()
+        (1 row)
+        =# SELECT blackhole();
+        blackhole
+        -----------
+        null
+        (1 row)
+        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        &lt;p&gt;Yes it simply returns a NULL string.&lt;/p&gt;
+
+        &lt;p&gt;The code of this template is available &lt;a href="https://github.com/michaelpq/pg_plugins/tree/master/blackhole"&gt;here&lt;/a&gt;, or blackhole/
+        with the rest of a set of PostgreSQL plugins managed in the repository
+        &lt;a href="https://github.com/michaelpq/pg_plugins"&gt;pg_plugins&lt;/a&gt;. Hope that's useful
+        (or not). In case, if you have ideas to improve it, feel free to send a pull
+        request, but let's keep it as small as possible.&lt;/p&gt;
+
+        &lt;p&gt;And Happy Halloween!&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://michael.otacoo.com/postgresql-2/blackhole-extension/</guid>
+      <pubDate>Fri, 31 Oct 2014 00:52:34 GMT</pubDate>
+    </item>
+    <item>
+      <title>Josh Berkus: Upcoming Seattle Visit</title>
+      <link>http://www.databasesoup.com/2014/10/upcoming-seattle-visit.html</link>
+      <description>I will be in Seattle soon on business.&amp;nbsp; This will include two opportunties to do PostgreSQL community stuff:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;A meetup with &lt;a href="http://www.meetup.com/Seattle-Postgres-User-Group-SEAPUG"&gt;SEAPUG&lt;/a&gt; on the 12th, where I will talk about the upcoming 9.4 features (not on the calendar yet, hopefully it'll be fixed soon)&lt;/li&gt;&lt;li&gt;A &lt;a href="https://www.usenix.org/conference/lisa14/birds-feather-sessions"&gt;BOF at Usenix LISA&lt;/a&gt; where I talk about the same, only to a different crowd.&lt;/li&gt;&lt;/ul&gt;If you're in the Seattle area, come chat!&amp;nbsp; We'll go out to Dilletante and have chocolate!</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-7476449567742726187.post-3547795249804911941</guid>
+      <pubDate>Thu, 30 Oct 2014 23:32:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Simon Riggs: Where lies the truth?</title>
+      <link>http://database-explorer.blogspot.com/2014/10/where-lies-truth.html</link>
+      <description>&lt;p&gt;Ben Bradlee, the former editor of the Washington Post died recently. A famous speech of his from 1997 contains some words that mean something for me. It starts like this &lt;/p&gt; &lt;p&gt;"Newspapers don't tell the truth under many different, and occasionally innocent, scenarios. Mostly when they don't know the truth. Or when they quote someone who does not know the truth. &lt;/p&gt; &lt;p&gt;And more and more, when they quote someone who is spinning the truth, shaping it to some preconceived version of a story that is supposed to be somehow better than the truth, omitting details that could be embarrassing.  &lt;p&gt;And finally, when they quote someone who is flat out lying...."  &lt;p&gt;and summarises with  &lt;p&gt;"Where lies the truth? That's the question that pulled us into this business, as it propelled Diogenes through the streets of Athens looking for an honest man. The more aggressive our serach for the truth, the more people are offended by the press. The more complicated are the issues and the more sophisticated are the ways to disguise the truth, the more aggressive our search for the truth must be, and the more offensive we are sure to become to some. So be it."  &lt;p&gt;before ending  &lt;p&gt;"I take great strength from that now, knowing that in my experience the truth does emerge. It takes forever sometimes, but it does emerge. And that any relaxation by the press will be extremely costly to democracy."  &lt;p&gt;Who would have that that his words apply so well to PostgreSQL and especially to the cost of data integrity? Yes, referential integrity does require additional performance to make it work right, but how else can we be sure that we are passing valid data around? Surely the purpose of a database needs to be primarily a home for the truth, verified to be so by cross checks and constraints.</description>
+      <guid isPermaLink="false">tag:blogger.com,1999:blog-9053536529694784563.post-39544341709208588</guid>
+      <pubDate>Thu, 30 Oct 2014 09:28:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Robert Hodges: An Ending and a Beginning: VMware Has Acquired Continuent</title>
+      <link>http://scale-out-blog.blogspot.com/2014/10/an-ending-and-beginning-vmware-has.html</link>
+      <description>&lt;div class="MsoNormal"&gt;As of today, Continuent is part of VMware. We are absolutely over the moon about it.&lt;/div&gt;&lt;div class="MsoNormal"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoNormal"&gt;You can read more about the news on the &lt;a href="http://blogs.vmware.com/vcloud/2014/10/vmware-acquires-continuent.html"&gt;VMware vCloud blog&lt;/a&gt;&amp;nbsp;by Ajay Patel, our new boss. There’s also an official post on our &lt;a href="http://continuent-tungsten.blogspot.com/2014/10/vmware-acquires-continuent.html"&gt;Continuent company blog&lt;/a&gt;&lt;span style="font-size: 11px;"&gt;.&lt;/span&gt;&amp;nbsp;In a nutshell the Continuent team is joining the &lt;span&gt;VMware Cloud Services Division&lt;/span&gt;. We will continue to improve, sell, and support our Tungsten products and work on innovative integration into VMware’s product line. &lt;/div&gt;&lt;div class="MsoNormal"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoNormal"&gt;So why do I feel exhilarated about joining VMware? There are three reasons.&amp;nbsp;&lt;/div&gt;&lt;div class="MsoNormal"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoListParagraphCxSpFirst"&gt;&lt;!--[if !supportLists]--&gt;&lt;span&gt;&lt;span&gt;1.&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;!--[endif]--&gt;Continuent is joining a world-class company that is the leader in virtualization and cloud infrastructure solutions. Even better, VMware understands the value of data to businesses.&lt;span&gt;&amp;nbsp;&lt;/span&gt;They share our vision of managing an integrated fabric of standard DBMS platforms, both in public clouds as well as in local data centers. It is a great home to advance our work for many years to come. &lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoListParagraphCxSpMiddle"&gt;&lt;!--[if !supportLists]--&gt;&lt;span&gt;&lt;span&gt;2.&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;!--[endif]--&gt;We can continue to support our existing users and make Tungsten even better. I know many of you have made big decisions to adopt Continuent technology that would affect your careers if they turned out badly. We now have more resources and a mandate to grow our product line. We will be able to uphold our commitments to you and your businesses. &lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoListParagraphCxSpLast"&gt;&lt;!--[if !supportLists]--&gt;&lt;span&gt;&lt;span&gt;3.&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;!--[endif]--&gt;It’s a great outcome for our team, which has worked for many years to make Continuent Tungsten technology successful. This includes our investors at Aura in Helsinki, who have been dogged in their support throughout our journey. &lt;/div&gt;&lt;div class="MsoNormal"&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="MsoNormal"&gt;Speaking of the Continuent team…I am so proud of what all of you have achieved.&lt;span&gt;&amp;nbsp;&lt;/span&gt;Today we are starting a new chapter in our work together. See you at VMware!&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div class="msocomtxt" id="_com_2"&gt;&lt;!--[if !supportAnnotations]--&gt;&lt;/div&gt;&lt;!--[endif]--&gt;&lt;/div&gt;&lt;/div&gt;</description>
+      <guid isPermaLink="true">tag:blogger.com,1999:blog-768233104244702633.post-7889917569354973279</guid>
+      <pubDate>Wed, 29 Oct 2014 15:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hans-Juergen Schoenig: Analytics: Lagging entire rows</title>
+      <link>http://www.cybertec.at/analytics-lagging-entire-rows/</link>
+      <description>PostgreSQL has offered support for powerful analytics and windowing for a couple of years now already. Many people all around the globe use analytics to make their applications more powerful and even faster. However, there is a small little feature in the area of analytics which is not that widely known. The power to use composite [&amp;#8230;]</description>
+      <guid isPermaLink="false">http://www.cybertec.at/?p=3230</guid>
+      <pubDate>Wed, 29 Oct 2014 09:58:30 GMT</pubDate>
+    </item>
+    <item>
+      <title>Andreas Scherbaum: FOSDEM PGDay and Devroom 2015 - Announcement &amp; Call for Papers</title>
+      <link>http://andreas.scherbaum.la/blog/archives/890-FOSDEM-PGDay-and-Devroom-2015-Announcement-Call-for-Papers.html</link>
+      <description>
+        &lt;div class="serendipity_authorpic"&gt;&lt;img alt="Author" src="http://andreas.scherbaum.la/blog/templates/default/img/Andreas__ads__Scherbaum.jpg" title="Andreas 'ads' Scherbaum" /&gt;&lt;br /&gt;&lt;span&gt;Andreas 'ads' Scherbaum&lt;/span&gt;&lt;/div&gt;&lt;p&gt;FOSDEM PGDay is a one day conference that will be held ahead of &lt;a href="http://andreas.scherbaum.la/blog/exit.php?url_id=10005&amp;amp;entry_id=890" target="_blank" title="http://www.fosdem.org"&gt;FOSDEM&lt;/a&gt; in Brussels, Belgium, on Jan 3th, 2015. This will be a one-day focused PostgreSQL event, with a single track of talks. This conference day will be for-charge and cost 50&amp;euro;, and will be held at the Brussels Marriott Hotel. Registration is required to attend, the registration is open. Since we have a limited number of seats available for this event, we urge everybody to register as soon as possible once open.&lt;/p&gt;
+
+        &lt;p&gt;PostgreSQL Europe will also have our regular devroom at FOSDEM on Saturday the 31st, which will be held at the main FOSDEM venue at ULB. This day will, of course, continue to be free of charge and open to all FOSDEM entrants. No registration is required to attend this day.&lt;/p&gt;
+
+        &lt;p&gt;For full details about the conference, venue and hotel, see &lt;a href="http://andreas.scherbaum.la/blog/exit.php?url_id=10006&amp;amp;entry_id=890" target="_blank" title="http://fosdem2015.pgconf.eu/"&gt;http://fosdem2015.pgconf.eu/&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;p&gt;&lt;br /&gt;
+        The call for papers is now open for both these events. We are looking for talks to fill both these days with content for both insiders and new users. Please see &lt;a href="http://andreas.scherbaum.la/blog/exit.php?url_id=10007&amp;amp;entry_id=890" target="_blank" title="http://fosdem2015.pgconf.eu/callforpapers/"&gt;http://fosdem2015.pgconf.eu/callforpapers/&lt;/a&gt; for details and submission information.&lt;/p&gt;
+
+        &lt;p&gt;The deadline for submissions is November 24th, 2014, but we may as usual pre-approve some talks, so get your submissions in soon!&lt;/p&gt;
+
+        &lt;p&gt;&lt;br /&gt;
+        We also have negotiated rate with the Brussels Marriott Hotel. For details, see &lt;a href="http://andreas.scherbaum.la/blog/exit.php?url_id=10008&amp;amp;entry_id=890" target="_blank" title="http://fosdem2015.pgconf.eu/venue/"&gt;http://fosdem2015.pgconf.eu/venue/&lt;/a&gt;.&lt;/p&gt;
+      </description>
+      <guid isPermaLink="false">http://andreas.scherbaum.la/blog/archives/890-guid.html</guid>
+      <pubDate>Wed, 29 Oct 2014 06:34:33 GMT</pubDate>
+    </item>
+    <item>
+      <title>Andrew Dunstan: One more time: Replication is no substitute for good backups.</title>
+      <link>http://adpgtech.blogspot.com/2014/10/one-more-time-replication-is-no.html</link>
+      <description>I don't know how many times I have had to try to drum this into clients' heads. Having an up to date replica won't protect you against certain kinds of failures. If you really want to protect your data, you need to use a proper backup solution - preferable a continuous backup solution. The ones I prefer to use are &lt;a href="http://www.pgbarman.org/"&gt;barman&lt;/a&gt; and &lt;a href="https://github.com/wal-e/wal-e"&gt;wal-e&lt;/a&gt;. Both have strengths and weaknesses, but both are incredibly useful, and fairly well documented and simple to set up. If you're not using one of them, or something similar, your data is at risk.&lt;br /&gt;&lt;br /&gt;(In case you haven't guessed, today is another of those days when I'm called in to help someone where the master and the replica are corrupted and the last trusted pg_dump backup is four days old and rolling back to it would cost a world of pain. I like these jobs. They can stretch your ingenuity, and no two are exactly alike. But I'd still rather be paid for something more productive.)</description>
+      <guid isPermaLink="false">tag:blogger.com,1999:blog-2356137376934964551.post-8465361401570383409</guid>
+      <pubDate>Wed, 29 Oct 2014 00:58:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
