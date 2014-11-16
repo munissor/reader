@@ -31,6 +31,7 @@ namespace Reader
                      "~/Scripts/angular.js",
                      "~/Scripts/angular-route.js",
                      "~/Scripts/angular-resource.js",
+                     "~/Scripts/angular-sanitize.js",
                      "~/Scripts/ng-infinite-scroll.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularapp").IncludeDirectory("~/Scripts/app", "*.js", true));

@@ -73,7 +73,7 @@ namespace Reader.Services
             var model = new Article()
             {
                 Title = article.Title,
-                Guid = article.Title,
+                Guid = article.Guid,
                 Link = article.Link,
                 PublicationDate = article.PublicationDate == DateTime.MinValue ? System.Data.SqlTypes.SqlDateTime.MinValue.Value : article.PublicationDate,
                 UpdateDate = article.UpdateDate == DateTime.MinValue ? System.Data.SqlTypes.SqlDateTime.MinValue.Value : article.UpdateDate,

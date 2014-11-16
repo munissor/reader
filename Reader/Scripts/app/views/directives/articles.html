@@ -1,0 +1,18 @@
+﻿<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Url</th>
+            <th>Authors</th>
+            <th>Categories</th>
+        </tr>
+        <tr data-ng-repeat="article in articles" data-ng-class="{unread: !post.Read}" data-ng-click="selectArticle(article)">
+            <td>{{article.Title}}</td>
+            <td>{{article.PublicationDate}}</td>
+            <td><a href="{{article.Url}}">Link</a></td>
+            <td>{{formatAuthors(article)}}</td>
+            <td>{{formatCategories(article)}}</td>
+        </tr>
+    </tbody>
+</table>

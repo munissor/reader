@@ -11,20 +11,16 @@ namespace Reader.Model
     /// </summary>
     public class Article
     {
-        public int Id { get; set; }
-
-        public string FeedId { get; set; }
-
-        public string Guid { get; set; }
-
+        public string Id { get; set; }
+        
         public string Title { get; set; }
         
-        public string Content { get; set; }
-
         public string Link { get; set; }
 
         public DateTime PublicationDate { get; set; }
 
-        public DateTime UpdateDate { get; set; }
+        public Category[] Categories { get; set; }
+
+        public Author[] Authors { get; set; }
     }
 }

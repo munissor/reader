@@ -1,4 +1,4 @@
-﻿var app = angular.module('reader', ['ngRoute', 'ngResource', 'Controllers', 'Services', 'Directives', 'Utils']);
+﻿var app = angular.module('reader', ['ngRoute', 'ngResource', 'ngSanitize', 'Controllers', 'Services', 'Directives', 'Utils']);
 angular.module('Utils', []);
 angular.module('Services', ['Utils']);
 angular.module('Controllers', ['Services', 'Utils']);

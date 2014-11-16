@@ -14,8 +14,8 @@
         </div>
     </div>
     <ul class="feedList">
-        <li data-ng-repeat="feed in subscriptions">
-            <a data-ng-click="selectFeed(feed)">{{feed.Title || feed.Url}}</a>
+        <li data-ng-repeat="sub in subscriptions">
+            <a data-ng-click="selectSubscription(sub)">{{sub.Title || sub.Url}}</a>
         </li>
     </ul>
 </div>
