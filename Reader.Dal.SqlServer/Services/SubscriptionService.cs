@@ -8,19 +8,20 @@ using System.Threading.Tasks;
 
 namespace Reader.Services
 {
-    public class SubscriptionService : ISubscriptionService
+    public class SubscriptionService : ServiceBase, ISubscriptionService
     {
-        private DataContext context;
+        ITaskService taskService;
 
-        public SubscriptionService(DataContext context)
+        public SubscriptionService(DataContext context, ITaskService taskService)
+            :base(context)
         {
-            this.context = context;
+            this.taskService = taskService;
         }
 
         public IList<Model.Subscription> Get(string userId)
         {
-            var res = from s in context.Set<Subscription>()
-                    join f in context.Set<Feed>() on s.FeedId equals f.Id
+            var res = from s in Context.Set<Subscription>()
+                    join f in Context.Set<Feed>() on s.FeedId equals f.Id
                     //join a in context.Set<Article>() on f.Id equals a.FeedId
                     where s.UserId == userId
                     select new Model.Subscription() { 
@@ -39,20 +40,21 @@ namespace Reader.Services
         public void Post(string userId, Model.Subscription model)
         {
             // check if the user is already subscribed to the feed
-            var subscribed = (from s in context.Set<Subscription>()
-                            join f in context.Set<Feed>() on s.FeedId equals f.Id
+            var subscribed = (from s in Context.Set<Subscription>()
+                              join f in Context.Set<Feed>() on s.FeedId equals f.Id
                             where s.UserId == userId
+                                && f.Url == model.Url
                             select s).Any();
 
             // if he is not
             if(!subscribed )
             {
                 // see if the feed is already registered into the system
-                var feed = context.Set<Feed>().FirstOrDefault( x=> x.Url == model.Url);
+                var feed = Context.Set<Feed>().FirstOrDefault(x => x.Url == model.Url);
                 
                 // if not let's add it
                 if (feed == null) {
-                    feed = context.Set<Feed>().Add(new Feed() { Url = model.Url, Title = string.Empty });
+                    feed = Context.Set<Feed>().Add(new Feed() { Url = model.Url, Title = string.Empty });
                     var subscription = new Subscription()
                     {
                         UserId = userId,
@@ -60,11 +62,11 @@ namespace Reader.Services
                         Feed = feed
                     };
 
-                    context.Set<Subscription>().Add(subscription);
+                    Context.Set<Subscription>().Add(subscription);
 
-                    context.SaveChanges();
+                    Context.SaveChanges();
 
-                    // TODO: trigger reading of the feed here
+                    taskService.UpdateFeed(feed.Id);
                 }
             }
         }

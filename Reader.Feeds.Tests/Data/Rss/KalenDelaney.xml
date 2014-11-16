@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="http://www2.sqlblog.com/utility/FeedStylesheets/rss.xsl" media="screen"?>
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/">
+  <channel>
+    <title>Kalen Delaney</title>
+    <link>http://www2.sqlblog.com/blogs/kalen_delaney/default.aspx</link>
+    <description />
+    <dc:language>en</dc:language>
+    <generator>CommunityServer 2.1 SP2 (Build: 61129.1)</generator>
+    <item>
+      <title>Did You Know? My PASS Demo Scripts are Up (and other news)!</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/11/10/my-pass-demo-scripts-are-up-and-other-news.aspx</link>
+      <pubDate>Mon, 10 Nov 2014 22:48:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:56387</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>1</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/56387.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=56387</wfw:commentRss>
+      <description>And so another PASS Summit passes into history. It was an awesome week, filled with old friends and new, and lots of superlative technical content! My Hekaton book was released just in time, and it was great seeing the excitement. Red Gate gave away all...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/11/10/my-pass-demo-scripts-are-up-and-other-news.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=56387" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/books/default.aspx">books</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/conference/default.aspx">conference</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/Hekaton/default.aspx">Hekaton</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/raffle/default.aspx">raffle</category>
+    </item>
+    <item>
+      <title>Did You Know? It’s Anniversary Time Again</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/10/27/anniversary-time-again.aspx</link>
+      <pubDate>Mon, 27 Oct 2014 18:48:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:56063</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>7</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/56063.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=56063</wfw:commentRss>
+      <description>And it coincides with a new book of mine being published. So I decided I would give away some presents! Today marks 27 years that I have been working with SQL Server. On this day in 1987 I started working for the Sybase Corporation in Berkeley, California,...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/10/27/anniversary-time-again.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=56063" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/anniversary/default.aspx">anniversary</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/books/default.aspx">books</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/In-Memory+OLTP/default.aspx">In-Memory OLTP</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/internals/default.aspx">internals</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/prizes/default.aspx">prizes</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/raffle/default.aspx">raffle</category>
+    </item>
+    <item>
+      <title>Did You Know? My Hekaton Book is at the Publishers!</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/10/09/my-hekaton-book-is-at-the-publishers.aspx</link>
+      <pubDate>Thu, 09 Oct 2014 22:38:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:55695</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>4</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/55695.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=55695</wfw:commentRss>
+      <description>I am very excited to be able to report that my latest book is at the printers now, and should be ready in time for the PASS Summit! And since the last files were sent off to the publisher (Red Gate) last Friday, I could finally finish up the slides for...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/10/09/my-hekaton-book-is-at-the-publishers.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=55695" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/books/default.aspx">books</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/conference/default.aspx">conference</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/Hekaton/default.aspx">Hekaton</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/PASS/default.aspx">PASS</category>
+    </item>
+    <item>
+      <title>Did You Know? I’ll be talking for a full day at the PASS Summit!</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/09/18/Hekaton-precon-and-Q_2600_A.aspx</link>
+      <pubDate>Thu, 18 Sep 2014 20:32:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:55296</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>1</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/55296.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=55296</wfw:commentRss>
+      <description>I’ll be speaking on my new favorite topic… Hekaton! (aka In-memory OLTP) http://www.sqlpass.org/summit/2014/Sessions/Details.aspx?sid=6152 I was delighted to have the chance to give a taste of the presentation for the the 24 Hours of PASS preview on September...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/09/18/Hekaton-precon-and-Q_2600_A.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=55296" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/Hekaton/default.aspx">Hekaton</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/PASS/default.aspx">PASS</category>
+    </item>
+    <item>
+      <title>Geek City: Lost Identity</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/06/17/lost-identity.aspx</link>
+      <pubDate>Tue, 17 Jun 2014 23:14:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:54217</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>4</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/54217.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=54217</wfw:commentRss>
+      <description>Way long ago, when Sybase first added the IDENTITY property, it took people quite a while to get the hang of using it. Along with being able to automatically generate sequential numbers for each row, we had to tune a configuration option with the geekiest...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/06/17/lost-identity.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=54217" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/identity/default.aspx">identity</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/traceflags/default.aspx">traceflags</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/t-sql/default.aspx">t-sql</category>
+    </item>
+    <item>
+      <title>Geek City: A Hint of Degrees</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/06/03/a-hint-of-degrees.aspx</link>
+      <pubDate>Tue, 03 Jun 2014 19:30:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:54076</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>18</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/54076.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=54076</wfw:commentRss>
+      <description>This is just a quick post to describe a test I just ran to satisfy my own curiosity. I remember when Microsoft first introduced the query hint OPTION (MAXDOP N). We already had the configuration option ‘max degree of parallelism’, so there were lots of...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/06/03/a-hint-of-degrees.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=54076" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/hints/default.aspx">hints</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/parallelism/default.aspx">parallelism</category>
+    </item>
+    <item>
+      <title>Geek City: The Hekaton Saga Continues, and some answers to questions</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/05/12/the-hekaton-saga-continues.aspx</link>
+      <pubDate>Mon, 12 May 2014 20:05:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:53882</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>0</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/53882.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=53882</wfw:commentRss>
+      <description>My Hekaton (aka In-memory OLTP) books is with the publisher. And I have no doubt they will do a much better job than my previous publisher did in bringing my SQL Server 2012 Internals Book into the light of day. My only regret is that my awesome Tech...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/05/12/the-hekaton-saga-continues.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=53882" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/books/default.aspx">books</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/Hekaton/default.aspx">Hekaton</category>
+    </item>
+    <item>
+      <title>Geek City: A row with no fixed length columns</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/01/12/geek-city_3A00_-no-fixed-length-columns.aspx</link>
+      <pubDate>Sun, 12 Jan 2014 23:45:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:52541</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>0</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/52541.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=52541</wfw:commentRss>
+      <description>Today I will return to my roots and post about the bits and bytes of internal storage. I received a request a while back to help with deciphering the DBCC PAGE output for a row with no fixed length columns. The person had read the section in my book (...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2014/01/12/geek-city_3A00_-no-fixed-length-columns.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=52541" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/row+structure/default.aspx">row structure</category>
+    </item>
+    <item>
+      <title>Geek City: Did You Know … that not everything you know is actually true!</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/11/27/not-everything-you-know-is-actually-true.aspx</link>
+      <pubDate>Wed, 27 Nov 2013 22:36:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:51935</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>9</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/51935.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=51935</wfw:commentRss>
+      <description>Software changes, new versions not only add new features, they also change internal behavior of old features, and not all the changes are documented! And how often, after a software upgrade, do you go through and test everything you knew was true, to...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/11/27/not-everything-you-know-is-actually-true.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=51935" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/indexes/default.aspx">indexes</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/transaction+log/default.aspx">transaction log</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/truncate/default.aspx">truncate</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/update-in-place/default.aspx">update-in-place</category>
+    </item>
+    <item>
+      <title>Geek City: SQL Server 2014 In-Memory OLTP (“Hekaton”) Whitepaper for CTP2</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/10/20/sql-server-2014-in-memory-oltp-hekaton-whitepaper-for-ctp2.aspx</link>
+      <pubDate>Mon, 21 Oct 2013 00:05:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:51411</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>10</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/51411.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=51411</wfw:commentRss>
+      <description>Last week at the PASS Summit in Charlotte, NC, the update of my whitepaper for CTP2 was released. The manager supervising the paper at Microsoft told me that David DeWitt himself said some very nice things about the technical quality of the paper, which...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/10/20/sql-server-2014-in-memory-oltp-hekaton-whitepaper-for-ctp2.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=51411" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/Hekaton/default.aspx">Hekaton</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/indexes/default.aspx">indexes</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/In-Memory+OLTP/default.aspx">In-Memory OLTP</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/internals/default.aspx">internals</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/whitepapers/default.aspx">whitepapers</category>
+    </item>
+    <item>
+      <title>Did You Know? There is a PASS Conference in Stockholm!</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/10/01/did-you-know-there-is-a-pass-conference-in-stockholm.aspx</link>
+      <pubDate>Wed, 02 Oct 2013 01:42:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:51188</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>2</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/51188.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=51188</wfw:commentRss>
+      <description>And I’ll be there! For the first time EVER, I will not be speaking at or attending the US PASS Summit. However, I will be speaking at the PASS SQL Rally in Stockholm November 4-6. I am so excited! I’ll be giving a pre-con you can read about here: http://www.sqlpass.org/sqlrally/2013/nordic/Agenda/PreconferenceSeminars.aspx#...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/10/01/did-you-know-there-is-a-pass-conference-in-stockholm.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=51188" width="1" height="1"&gt;</description>
+    </item>
+    <item>
+      <title>Geek City: How old are my statistics?</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/08/31/how-old-are-my-statistics.aspx</link>
+      <pubDate>Sat, 31 Aug 2013 21:56:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:50773</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>14</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/50773.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=50773</wfw:commentRss>
+      <description>This post is basically to answer a question asked in class this week: How can we get the last statistics update date for ALL user tables in a database? After working on the query for a while, I realized that the new metadata function I posted about here...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/08/31/how-old-are-my-statistics.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=50773" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/metadata/default.aspx">metadata</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/statistics/default.aspx">statistics</category>
+    </item>
+    <item>
+      <title>Geek City: sp_cacheobjects for SQL Server 2012</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/07/31/sp-cacheobjects-for-sql-server-2012.aspx</link>
+      <pubDate>Thu, 01 Aug 2013 00:31:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:50348</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>3</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/50348.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=50348</wfw:commentRss>
+      <description>In a post about 4 1/2 years ago , I gave you my version of a replacement for the old pre-2005 pseudotable syscacheobjects . I called it sp_cacheobjects and created it as a view in the master database. With the sp _ prefix, the view can be accessed from...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/07/31/sp-cacheobjects-for-sql-server-2012.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=50348" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/metadata/default.aspx">metadata</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/plan+cache/default.aspx">plan cache</category>
+    </item>
+    <item>
+      <title>Did You Know? What settings to always change</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/06/25/settings-to-always-change.aspx</link>
+      <pubDate>Tue, 25 Jun 2013 18:21:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:49820</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>15</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/49820.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=49820</wfw:commentRss>
+      <description>A week ago, I taught my SQL Server 2012 Internals class to a great group of very interactive students. Even though a dozen of them were taking the class remotely, there were still lots of really great questions and and lots of discussion. One of the students...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/06/25/settings-to-always-change.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=49820" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/configuration/default.aspx">configuration</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/parallelism/default.aspx">parallelism</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/statistics/default.aspx">statistics</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/training/default.aspx">training</category>
+    </item>
+    <item>
+      <title>T-SQL Tuesday: What kind of Bookmark are you using?</title>
+      <link>http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/06/10/tsql-tuesday-what-kind-of-bookmark-are-you-using.aspx</link>
+      <pubDate>Tue, 11 Jun 2013 03:21:00 GMT</pubDate>
+      <guid isPermaLink="false">21093a07-8b3d-42db-8cbf-3350fcbf5496:49537</guid>
+      <dc:creator>Kalen Delaney</dc:creator>
+      <slash:comments>9</slash:comments>
+      <comments>http://www2.sqlblog.com/blogs/kalen_delaney/comments/49537.aspx</comments>
+      <wfw:commentRss>http://www2.sqlblog.com/blogs/kalen_delaney/commentrss.aspx?PostID=49537</wfw:commentRss>
+      <description>I’m glad there is no minimum length requirement for T-SQL Tuesday blog posts , because this one will be short. I was in the classroom for almost 11 hours today, and I need to be back tomorrow morning at 7:30. Way long ago, back in SQL 2000 (or was it...(&lt;a href="http://www2.sqlblog.com/blogs/kalen_delaney/archive/2013/06/10/tsql-tuesday-what-kind-of-bookmark-are-you-using.aspx"&gt;read more&lt;/a&gt;)&lt;img src="http://www2.sqlblog.com/aggbug.aspx?PostID=49537" width="1" height="1"&gt;</description>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/indexes/default.aspx">indexes</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/query+plans/default.aspx">query plans</category>
+      <category domain="http://www2.sqlblog.com/blogs/kalen_delaney/archive/tags/T-SQL+Tuesday/default.aspx">T-SQL Tuesday</category>
+    </item>
+  </channel>
+</rss>

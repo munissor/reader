@@ -6,8 +6,19 @@
         
         $scope.addModel = null;
 
-        $scope.subscriptions = subscriptionService.query();
+        $scope.subscriptions = [];
 
+        function reloadFeeds() {
+
+            $scope.subscriptions = [];
+
+            subscriptionService.query(function (data, responseHeader) {
+                $scope.subscriptions.push({ Title: 'All', Id: '' });
+
+                Array.prototype.push.apply($scope.subscriptions, data);
+            });
+        };
+        
         $scope.selectSubscription = function (subscription) {
             viewData.subscriptionId = subscription.Id;
         }
@@ -25,8 +36,13 @@
         }
 
         $scope.add = function () {
-            subscriptionService.save($scope.addModel);
+            subscriptionService.save($scope.addModel, function (u, putResponseHeaders) {
+                $scope.closeAdd();
+                reloadFeeds();
+            });
         }
+
+        reloadFeeds();
     };
   
 

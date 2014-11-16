@@ -13,10 +13,7 @@
             <button data-ng-click="closeAdd()">Cancel</button>
         </div>
     </div>
-    <div data-xxng-show="scope.subscriptions != null && scope.subscriptions.length == 0">
-         No subscriptions
-    </div>
-    <ul class="feedList" data-xxng-show="scope.subscriptions != null && scope.subscriptions.length > 0">
+    <ul class="feedList">
         <li data-ng-repeat="feed in subscriptions">
             <a data-ng-click="selectFeed(feed)">{{feed.Title || feed.Url}}</a>
         </li>

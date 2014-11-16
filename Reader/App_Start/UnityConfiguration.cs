@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Unity.WebApi;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
+using Reader.Feeds;
 
 namespace Reader
 {
@@ -17,8 +18,11 @@ namespace Reader
         {
             Container = new UnityContainer();
 
-            Container.RegisterType<DataContext>();
+            Container.RegisterType<DataContext>(new TransientLifetimeManager());
 
+            Container.RegisterType<IFeedParserFactory, FeedParserFactory>();
+
+            Container.RegisterType<ITaskService, TaskService>();
             Container.RegisterType<ISubscriptionService, SubscriptionService>();
 
             DependencyResolver.SetResolver(new Microsoft.Practices.Unity.Mvc.UnityDependencyResolver(Container));
