@@ -24,7 +24,8 @@ namespace Reader
 
             Container.RegisterType<ITaskService, TaskService>();
             Container.RegisterType<ISubscriptionService, SubscriptionService>();
-
+            Container.RegisterType<IArticleService, ArticleService>();
+            
             DependencyResolver.SetResolver(new Microsoft.Practices.Unity.Mvc.UnityDependencyResolver(Container));
             config.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(Container);
         }
