@@ -10,10 +10,12 @@ namespace Reader.Services
 {
     public class SubscriptionService : ServiceBase, ISubscriptionService
     {
+        ITaskService taskService;
 
-        public SubscriptionService(DataContext context)
+        public SubscriptionService(DataContext context, ITaskService taskService)
             :base(context)
         {
+            this.taskService = taskService;
         }
 
         public IList<Model.Subscription> Get(string userId)
@@ -41,6 +43,7 @@ namespace Reader.Services
             var subscribed = (from s in Context.Set<Subscription>()
                               join f in Context.Set<Feed>() on s.FeedId equals f.Id
                             where s.UserId == userId
+                                && f.Url == model.Url
                             select s).Any();
 
             // if he is not
@@ -63,7 +66,7 @@ namespace Reader.Services
 
                     Context.SaveChanges();
 
-                    // TODO: trigger reading of the feed here
+                    taskService.UpdateFeed(feed.Id);
                 }
             }
         }
