@@ -23,7 +23,7 @@ namespace Reader.Services
                            orderby a.PublicationDate ascending, a.Id ascending
                            where su.UserId == userId &&
                             (status.FirstOrDefault() == null || status.FirstOrDefault().Read == false)
-                           select a;
+                           select new { Article = a, Status = status.FirstOrDefault() };
 
             if (!string.IsNullOrWhiteSpace(subscriptionId))
             {
@@ -32,24 +32,25 @@ namespace Reader.Services
                             where s.Id == sid
                             select s.FeedId).First();
 
-                articles = articles.Where(x => x.FeedId == fid);
+                articles = articles.Where(x => x.Article.FeedId == fid);
             }
 
             if (!string.IsNullOrWhiteSpace(lastArticleId))
             {
                 long aid = long.Parse(lastArticleId);
-                articles = articles.Where(x => x.Id > aid);
+                articles = articles.Where(x => x.Article.Id > aid);
             }
 
             var data = articles.Take(count).ToList();
+
             var res = data.Select(x => new Model.Article()
             {
-                Id = x.Id.ToString(),
-                Title = x.Title,
-                Link = x.Link,
-                PublicationDate = x.PublicationDate,
-                Categories = x.Categories.Select(c => new Model.Category() { Name = c.Name }).ToArray(),
-                Authors = x.Authors.Select(a => new Model.Author() { Name = a.Name, Email = a.Email }).ToArray()
+                Id = x.Article.Id.ToString(),
+                Title = x.Article.Title,
+                Link = x.Article.Link,
+                PublicationDate = x.Article.PublicationDate,
+                Categories = x.Article.Categories.Select(c => new Model.Category() { Name = c.Name }).ToArray(),
+                Authors = x.Article.Authors.Select(a => new Model.Author() { Name = a.Name, Email = a.Email }).ToArray()
             }).ToList();
 
             return res;

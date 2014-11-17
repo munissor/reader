@@ -20,10 +20,10 @@ namespace Reader
             {
                 config.UseSqlServerStorage("DefaultConnection");
 
-                config.UseAuthorizationFilters(new AuthorizationFilter
-                {
-                    Roles = "admin"
-                });
+                //config.UseAuthorizationFilters(new AuthorizationFilter
+                //{
+                //    Roles = "admin"
+                //});
 
                 config.UseServer();
             });

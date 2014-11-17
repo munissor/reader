@@ -28,7 +28,10 @@ textarea {
 
 
 
-
+[ng-click],
+[data-ng-click] {
+    cursor: pointer;
+}
 
 
 
