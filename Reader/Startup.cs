@@ -1,11 +1,12 @@
-﻿using Microsoft.Owin;
+﻿using Hangfire.Dashboard;
+using Microsoft.Owin;
 using Owin;
 using Hangfire;
 using Hangfire.SqlServer;
 using System;
 using Microsoft.Practices.Unity;
 using Reader.Services;
-
+using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(Reader.Startup))]
 namespace Reader
@@ -19,6 +20,12 @@ namespace Reader
             app.UseHangfire(config =>
             {
                 config.UseSqlServerStorage("DefaultConnection");
+
+                config.UseAuthorizationFilters(new AuthorizationFilter
+                {
+                    Users = "admin"
+                });
+
                 config.UseServer();
             });
 
