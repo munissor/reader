@@ -8,8 +8,12 @@ namespace Reader
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.UseCdn = true;
+
+            var jquery = new ScriptBundle("~/bundles/jquery", "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js").Include(
+                "~/Scripts/jquery-{version}.js");
+            jquery.CdnFallbackExpression = "window.jQuery";
+            bundles.Add(jquery);
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -38,7 +42,7 @@ namespace Reader
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
