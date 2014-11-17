@@ -9,6 +9,9 @@ using System.Xml;
 
 namespace Reader.Feeds
 {
+    /// <summary>
+    /// A parser for Rss feeds.
+    /// </summary>
     public class RssFeedParser : XmlFeedParserBase, IFeedParser
     {
         private XmlNode channel;
