@@ -46,6 +46,16 @@
 
             viewData.articleId = article.Id;
         };
+
+        $scope.toggleRead = function (article) {
+            article.Read = !article.Read;
+            articleService.save({ id: article.Id }, article);
+        }
+
+        $scope.toggleStarred = function (article) {
+            article.Starred = !article.Starred;
+            articleService.save({ id: article.Id }, article);
+        }
     };
 
 

@@ -17,6 +17,16 @@ namespace Reader.Services
             this.Context = context;
         }
 
+        /// <summary>
+        /// Gets the mininimum date time supported by sql server.
+        /// </summary>
+        /// <remarks>Used as an undefined value for non null DB date fields</remarks>
+        protected DateTime MinSqlDate
+        {
+            get { return System.Data.SqlTypes.SqlDateTime.MinValue.Value; }
+ 
+        }
+
         public DataContext Context { get; private set; }
     }
 }

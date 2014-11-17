@@ -50,7 +50,9 @@ namespace Reader.Services
                 Link = x.Article.Link,
                 PublicationDate = x.Article.PublicationDate,
                 Categories = x.Article.Categories.Select(c => new Model.Category() { Name = c.Name }).ToArray(),
-                Authors = x.Article.Authors.Select(a => new Model.Author() { Name = a.Name, Email = a.Email }).ToArray()
+                Authors = x.Article.Authors.Select(a => new Model.Author() { Name = a.Name, Email = a.Email }).ToArray(),
+                Read = x.Status == null ? false : x.Status.Read,
+                Starred = x.Status == null ? false : x.Status.Starred
             }).ToList();
 
             return res;
@@ -69,6 +71,46 @@ namespace Reader.Services
                 };
             }
             return res;
+        }
+
+
+        public void Post(string userId, Model.Article article)
+        {
+            var aid = long.Parse(article.Id);
+            // we get the actual article from the DB, don't trust data coming from outside
+            var realArticle = Context.Set<Article>().FirstOrDefault(x => x.Id == aid);
+            if (realArticle != null)
+            {
+                // we need to check that the user is subscribed to the feed
+                var subscription = Context.Set<Subscription>().FirstOrDefault(x => x.FeedId == realArticle.FeedId && x.UserId == userId);
+
+                if (subscription != null)
+                {
+                    var status = Context.Set<Status>().FirstOrDefault(x => x.SubscriptionId == subscription.Id && x.ArticleId == realArticle.Id);
+                    if (status == null)
+                    {
+                        status = new Status()
+                        {
+                            SubscriptionId = subscription.Id,
+                            ArticleId = realArticle.Id,
+                            Read = article.Read,
+                            ReadDate = article.Read ? DateTime.UtcNow : MinSqlDate,
+                            Starred = article.Starred,
+                            StarredDate = article.Starred ? DateTime.UtcNow : MinSqlDate
+                        };
+                        Context.Set<Status>().Add(status);
+                    }
+                    else
+                    {
+                        status.Read = article.Read;
+                        status.ReadDate = article.Read ? DateTime.UtcNow : MinSqlDate;
+                        status.Starred = article.Starred;
+                        status.StarredDate = article.Starred ? DateTime.UtcNow : MinSqlDate;
+                    }
+
+                    Context.SaveChanges();
+                }
+            }
         }
     }
 }

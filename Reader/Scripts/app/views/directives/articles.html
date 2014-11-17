@@ -1,6 +1,8 @@
 ﻿<table class="table table-striped">
     <tbody>
         <tr>
+            <th class="icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></th>
+            <th class="icon"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></th>
             <th>Title</th>
             <th>Date</th>
             <th>Url</th>
@@ -8,6 +10,12 @@
             <th>Categories</th>
         </tr>
         <tr data-ng-repeat="article in articles" data-ng-class="{unread: !post.Read}" data-ng-click="selectArticle(article)">
+            <td>
+                <a data-ng-click="toggleRead(article)" class="glyphicon" data-ng-class="{'glyphicon-ok': article.Read, 'glyphicon-envelope': !article.Read}"></a>
+            </td>
+            <td>
+                <a data-ng-click="toggleStarred(article)" class=" glyphicon" data-ng-class="{'glyphicon-star': article.Starred, 'glyphicon-star-empty': !article.Starred}"></a>
+            </td>
             <td>{{article.Title}}</td>
             <td>{{article.PublicationDate}}</td>
             <td><a href="{{article.Url}}">Link</a></td>

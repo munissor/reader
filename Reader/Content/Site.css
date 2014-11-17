@@ -68,6 +68,10 @@ textarea {
     font-weight: bold;
 }
 
+#articles .icon {
+    width: 20px;
+}
+
 #article {
     position: absolute;
     top: 200px;

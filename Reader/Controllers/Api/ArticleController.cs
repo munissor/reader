@@ -32,8 +32,9 @@ namespace Reader.Controllers.Api
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Article article)
         {
+            articleService.Post(GetUserId(), article);
         }
 
         // PUT api/<controller>/5
