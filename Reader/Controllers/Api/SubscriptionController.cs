@@ -23,28 +23,27 @@ namespace Reader.Controllers.Api
         }
 
         // GET: api/Subscription
-        public IList<SubscriptionViewModel> Get()
+        public IList<Subscription> Get()
         {
-            var res = subscriptionService.Get(GetUserId());
-            return Mapper.Map<IList<Subscription>, IList<SubscriptionViewModel>>(res);
+            return subscriptionService.Get(GetUserId());
         }
 
         // GET: api/Subscription/5
-        public SubscriptionViewModel Get(string id)
+        public Subscription Get(string id)
         {
             return null;
         }
 
         // POST: api/Subscription
-        public void Post([FromBody]SubscriptionViewModel value)
+        public void Post([FromBody]Subscription subscription)
         {
-            var model = Mapper.Map<SubscriptionViewModel, Subscription>(value);
-            subscriptionService.Post(GetUserId(), model);
+
+            subscriptionService.Post(GetUserId(), subscription);
             // add
         }
 
         // PUT: api/Subscription/5
-        public void Put(string id, [FromBody]SubscriptionViewModel value)
+        public void Put(string id, [FromBody]Subscription value)
         {
             // upd
         }
