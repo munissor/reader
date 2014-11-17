@@ -41,13 +41,13 @@ namespace Reader.Services
                 {
                     var lastArticle = articles.OrderByDescending(x => x.UpdateDate).FirstOrDefault();
                     if (lastArticle == null)
-                        feed.LastUpdate = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
+                        feed.LastUpdate = MinSqlDate;
                     else
                         feed.LastUpdate = lastArticle.UpdateDate;
                 }
                 if (feed.LastUpdate == DateTime.MinValue)
                 {
-                    feed.LastUpdate = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
+                    feed.LastUpdate = MinSqlDate;
                 }
 
                 feed.Subtitle = newFeedInfo.Subtitle;
@@ -84,8 +84,8 @@ namespace Reader.Services
                 Title = article.Title,
                 Guid = article.Guid,
                 Link = article.Link,
-                PublicationDate = article.PublicationDate == DateTime.MinValue ? System.Data.SqlTypes.SqlDateTime.MinValue.Value : article.PublicationDate,
-                UpdateDate = article.UpdateDate == DateTime.MinValue ? System.Data.SqlTypes.SqlDateTime.MinValue.Value : article.UpdateDate,
+                PublicationDate = article.PublicationDate == DateTime.MinValue ? MinSqlDate : article.PublicationDate,
+                UpdateDate = article.UpdateDate == DateTime.MinValue ? MinSqlDate : article.UpdateDate,
                 Content = article.Description,
 
                 Feed = feed

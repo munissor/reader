@@ -12,5 +12,7 @@ namespace Reader.Services
         IList<Article> Get(string userId, string subscriptionId, string lastArticleId, int count);
 
         ArticleDetail Get(string articleId);
+
+        void Post(string userId, Article article);
     }
 }
