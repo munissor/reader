@@ -22,5 +22,9 @@ namespace Reader.Model
         public Category[] Categories { get; set; }
 
         public Author[] Authors { get; set; }
+
+        public bool Read { get; set; }
+
+        public bool Starred { get; set; }
     }
 }

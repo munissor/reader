@@ -31,6 +31,7 @@ namespace Reader
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            // TODO: CDN
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                      "~/Scripts/angular.js",
                      "~/Scripts/angular-route.js",

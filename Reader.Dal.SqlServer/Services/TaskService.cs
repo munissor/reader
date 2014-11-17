@@ -24,48 +24,57 @@ namespace Reader.Services
         {
 
             var feed = Context.Set<Feed>().FirstOrDefault(x => x.Id == feedId);
-            
-            var parser = parserFactory.CreateParserFromUrl(feed.Url);
-
-            var newFeedInfo = parser.ParseFeedInformation();
-            var articles = parser.ParseArticles().ToList();
-
-            // Updates the feed with the last information
             feed.LastDownload = DateTime.UtcNow;
 
-            feed.LastUpdate = newFeedInfo.LastUpdate;
-            if (feed.LastUpdate == DateTime.MinValue)
+            try
             {
-                var lastArticle = articles.OrderByDescending(x => x.UpdateDate).FirstOrDefault();
-                if (lastArticle == null)
+                var parser = parserFactory.CreateParserFromUrl(feed.Url);
+           
+                var newFeedInfo = parser.ParseFeedInformation();
+                var articles = parser.ParseArticles().ToList();
+
+                // Updates the feed with the last information
+                feed.LastDownload = DateTime.UtcNow;
+
+                feed.LastUpdate = newFeedInfo.LastUpdate;
+                if (feed.LastUpdate == DateTime.MinValue)
+                {
+                    var lastArticle = articles.OrderByDescending(x => x.UpdateDate).FirstOrDefault();
+                    if (lastArticle == null)
+                        feed.LastUpdate = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
+                    else
+                        feed.LastUpdate = lastArticle.UpdateDate;
+                }
+                if (feed.LastUpdate == DateTime.MinValue)
+                {
                     feed.LastUpdate = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
-                else
-                    feed.LastUpdate = lastArticle.UpdateDate;
+                }
+
+                feed.Subtitle = newFeedInfo.Subtitle;
+                feed.Title = newFeedInfo.Title;
+
+                var guids = articles.Select(x => x.Guid);
+
+                // Tries to find existing articles with the guids we loaded
+                var existingGuids = (from a in Context.Set<Article>()
+                                     where guids.Contains(a.Guid)
+                                          && a.FeedId == feedId
+                                     select a.Guid).ToList();
+
+                // removes from new articles the one we already have
+                articles.RemoveAll(x => existingGuids.Contains(x.Guid));
+
+                var dataArticles = articles.Select(x => ConvertArticle(feed, x));
+
+                Context.Set<Article>().AddRange(dataArticles);
+
+                Context.SaveChanges();
             }
-            if (feed.LastUpdate == DateTime.MinValue)
+            catch(Exception e) 
             {
-                feed.LastUpdate = System.Data.SqlTypes.SqlDateTime.MinValue.Value;
+                feed.LastDownloadError = e.Message;
+                Context.SaveChanges();
             }
-
-            feed.Subtitle = newFeedInfo.Subtitle;
-            feed.Title = newFeedInfo.Title;
-
-            var guids = articles.Select(x => x.Guid);
-
-            // Tries to find existing articles with the guids we loaded
-            var existingGuids = (from a in Context.Set<Article>()
-                                 where guids.Contains(a.Guid)
-                                      && a.FeedId == feedId
-                                 select a.Guid).ToList();
-
-            // removes from new articles the one we already have
-            articles.RemoveAll(x => existingGuids.Contains(x.Guid));
-
-            var dataArticles = articles.Select(x => ConvertArticle(feed, x));
-
-            Context.Set<Article>().AddRange(dataArticles);
-
-            Context.SaveChanges();
         }
 
         public Article ConvertArticle(Feed feed, Reader.Feeds.Article article)
@@ -96,9 +105,7 @@ namespace Reader.Services
 
             return model;
         }
-
-
-
+        
         public void UpdateFeeds()
         {
             // Update the 100 oldest feeds

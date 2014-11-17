@@ -53,7 +53,8 @@ namespace Reader.Services
                 var feed = Context.Set<Feed>().FirstOrDefault(x => x.Url == model.Url);
                 
                 // if not let's add it
-                if (feed == null) {
+                if (feed == null)
+                {
                     feed = Context.Set<Feed>().Add(new Feed() { Url = model.Url, Title = string.Empty });
                     var subscription = new Subscription()
                     {
@@ -68,7 +69,33 @@ namespace Reader.Services
 
                     taskService.UpdateFeed(feed.Id);
                 }
+                else 
+                {
+                    var subscription = new Subscription()
+                    {
+                        UserId = userId,
+                        SubscriptionDate = DateTime.UtcNow,
+                        Feed = feed
+                    };
+
+                    Context.Set<Subscription>().Add(subscription);
+
+                    Context.SaveChanges();
+                }
             }
         }
+
+        public void Delete(string userId, string subscriptionId)
+        {
+            var sid = long.Parse(subscriptionId);
+            var sub = Context.Set<Subscription>()
+                .FirstOrDefault(x => x.UserId == userId && x.Id == sid);
+
+            if (sub != null) 
+            {
+                Context.Set<Subscription>().Remove(sub);
+                Context.SaveChanges();
+            }
+        } 
     }
 }

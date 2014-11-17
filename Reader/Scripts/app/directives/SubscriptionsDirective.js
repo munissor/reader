@@ -3,7 +3,7 @@
     var _link = function ($scope, element, attrs) {
 
         $scope.adding = false;
-        
+        $scope.maintenance = false;
         $scope.addModel = null;
 
         $scope.subscriptions = [];
@@ -39,6 +39,18 @@
             subscriptionService.save($scope.addModel, function (u, putResponseHeaders) {
                 $scope.closeAdd();
                 reloadFeeds();
+            });
+        }
+
+        $scope.toggleMaintenance = function () {
+            $scope.maintenance = !$scope.maintenance;
+        }
+
+        $scope.removeSubscription = function (subscription) {
+            subscriptionService.remove({ id: subscription.Id }, function () {
+                // TODO: remove the single feed
+                reloadFeeds();
+                //$scope.subscriptions.remove(subscription);
             });
         }
 

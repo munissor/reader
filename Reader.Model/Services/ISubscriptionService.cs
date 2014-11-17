@@ -12,5 +12,7 @@ namespace Reader.Services
         IList<Subscription> Get(string userId);
 
         void Post(string userId, Subscription model);
+
+        void Delete(string userId, string subscriptionId);
     }
 }

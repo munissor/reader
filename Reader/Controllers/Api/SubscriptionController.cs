@@ -52,6 +52,7 @@ namespace Reader.Controllers.Api
         // DELETE: api/Subscription/5
         public void Delete(string id)
         {
+            subscriptionService.Delete(GetUserId(), id);
         }
     }
 }

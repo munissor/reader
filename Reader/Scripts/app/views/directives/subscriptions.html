@@ -2,7 +2,8 @@
     <div>
         <ul class="feedTools">
             <li data-ng-click="openAdd()">Add Subscription</li>
-            <li>Manage Subscriptions</li>
+            <li data-ng-click="toggleMaintenance()" data-ng-hide="maintenance">Manage Subscriptions</li>
+            <li data-ng-click="toggleMaintenance()" data-ng-show="maintenance">Done</li>
         </ul>
     </div>
     <div data-ng-show="adding">
@@ -15,6 +16,7 @@
     </div>
     <ul class="feedList">
         <li data-ng-repeat="sub in subscriptions">
+            <a class="glyphicon glyphicon-remove" aria-hidden="true"  data-ng-click="removeSubscription(sub)" data-ng-show="maintenance && sub.Id"></a>
             <a data-ng-click="selectSubscription(sub)">{{sub.Title || sub.Url}}</a>
         </li>
     </ul>
