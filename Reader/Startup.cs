@@ -20,16 +20,16 @@ namespace Reader
             {
                 config.UseSqlServerStorage("DefaultConnection");
 
-                //config.UseAuthorizationFilters(new AuthorizationFilter
-                //{
-                //    Roles = "admin"
-                //});
+                config.UseAuthorizationFilters(new AuthorizationFilter
+                {
+                    Roles = "admin"
+                });
 
                 config.UseServer();
             });
 
-            // Update every 10 minutes
-            RecurringJob.AddOrUpdate(() => Update(), "*/10 * * * *");
+            // Update every 20 minutes
+            RecurringJob.AddOrUpdate(() => Update(), "*/20 * * * *");
         }
 
         public void Update()
