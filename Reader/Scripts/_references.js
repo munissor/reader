@@ -20,3 +20,4 @@
 /// <reference path="app/directives/articlesdirective.js" />
 /// <reference path="app/directives/articledirective.js" />
 /// <reference path="angular-sanitize.min.js" />
+/// <reference path="app/utils/enums.js" />

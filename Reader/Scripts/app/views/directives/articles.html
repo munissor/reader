@@ -9,7 +9,7 @@
             <th>Authors</th>
             <th>Categories</th>
         </tr>
-        <tr data-ng-repeat="article in articles" data-ng-class="{unread: !post.Read}" data-ng-click="selectArticle(article)">
+        <tr data-ng-repeat="article in articles" data-ng-class="{unread: !article.Read}" data-ng-click="selectArticle(article)">
             <td>
                 <a data-ng-click="toggleRead(article)" class="glyphicon" data-ng-class="{'glyphicon-ok': article.Read, 'glyphicon-envelope': !article.Read}"></a>
             </td>

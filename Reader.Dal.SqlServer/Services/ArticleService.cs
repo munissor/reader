@@ -15,15 +15,30 @@ namespace Reader.Services
         {
         }
 
-        public IList<Model.Article> Get(string userId, string subscriptionId, string lastArticleId, int count)
+        public IList<Model.Article> Get(string userId, string subscriptionId, string lastArticleId, int count, string filter)
         {
             var articles = from a in Context.Set<Article>()
                            join su in Context.Set<Subscription>() on a.FeedId equals su.FeedId
                            join s in Context.Set<Status>() on a.Id equals s.ArticleId into status
+                           where su.UserId == userId /*&&
+                            (status.FirstOrDefault() == null || status.FirstOrDefault().Read == false)*/
                            orderby a.PublicationDate ascending, a.Id ascending
-                           where su.UserId == userId &&
-                            (status.FirstOrDefault() == null || status.FirstOrDefault().Read == false)
                            select new { Article = a, Status = status.FirstOrDefault() };
+            
+            filter = filter.ToLower();
+            if (filter == "read") 
+            {
+                articles = articles.Where(x => x.Status != null && x.Status.Read == true);
+            }
+            else if (filter == "starred")
+            {
+                articles = articles.Where(x => x.Status != null && x.Status.Starred == true);
+            }
+            else 
+            {
+                // defaults to unread
+                articles = articles.Where(x => x.Status == null || x.Status.Read == false);
+            }
 
             if (!string.IsNullOrWhiteSpace(subscriptionId))
             {

@@ -279,6 +279,7 @@
     <Content Include="Scripts\app\directives\ArticlesDirective.js" />
     <Content Include="Scripts\app\services\ArticleService.js" />
     <Content Include="Scripts\app\services\SubscriptionService.js" />
+    <Content Include="Scripts\app\utils\enums.js" />
     <Content Include="Scripts\app\utils\viewData.js" />
     <Content Include="Scripts\app\views\directives\subscriptions.html" />
     <Content Include="Scripts\app\views\directives\article.html" />

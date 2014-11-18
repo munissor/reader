@@ -9,7 +9,7 @@ namespace Reader.Services
 {
     public interface IArticleService
     {
-        IList<Article> Get(string userId, string subscriptionId, string lastArticleId, int count);
+        IList<Article> Get(string userId, string subscriptionId, string lastArticleId, int count, string filter);
 
         ArticleDetail Get(string articleId);
 

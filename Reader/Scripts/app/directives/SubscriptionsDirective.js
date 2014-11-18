@@ -1,4 +1,4 @@
-﻿angular.module('Directives').directive('subscriptions', ['viewData', 'subscriptionService', function (viewData, subscriptionService) {
+﻿angular.module('Directives').directive('subscriptions', ['viewData', 'enums', 'subscriptionService', function (viewData, enums, subscriptionService) {
 
     var _link = function ($scope, element, attrs) {
 
@@ -7,6 +7,9 @@
         $scope.addModel = null;
 
         $scope.subscriptions = [];
+
+        $scope.filters = enums.filters;
+        $scope.filter = enums.filters[0];
 
         function reloadFeeds() {
 
@@ -18,6 +21,12 @@
                 Array.prototype.push.apply($scope.subscriptions, data);
             });
         };
+
+        $scope.$watch(function () { return $scope.filter; }, function () {
+            viewData.filter = $scope.filter;
+        });
+
+      
         
         $scope.selectSubscription = function (subscription) {
             viewData.subscriptionId = subscription.Id;

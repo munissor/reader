@@ -20,9 +20,9 @@ namespace Reader.Controllers.Api
         }
 
         // GET api/<controller>
-        public IEnumerable<Article> Get(string subscriptionId, string articleId, int count)
+        public IEnumerable<Article> Get(string subscriptionId, string articleId, int count, string filter)
         {
-            return articleService.Get(GetUserId(), subscriptionId, articleId, count);
+            return articleService.Get(GetUserId(), subscriptionId, articleId, count, filter);
         }
 
         // GET api/<controller>/5

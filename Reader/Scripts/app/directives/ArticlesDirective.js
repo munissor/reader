@@ -11,6 +11,11 @@
             $scope.loadNextPage();
         });
 
+        $scope.$watch(function () { return viewData.filter; }, function () {
+            $scope.articles = [];
+            $scope.loadNextPage();
+        });
+
         $scope.loadNextPage = function () {
             if (!isLoading) {
                 if (viewData.subscriptionId !== null) {
@@ -20,7 +25,7 @@
                     }
                     isLoading = true;
 
-                    articleService.query({ subscriptionId: viewData.subscriptionId, articleId: aid, count: 50 }, function (data, responseHeader) {
+                    articleService.query({ subscriptionId: viewData.subscriptionId, articleId: aid, count: 50, filter: viewData.filter }, function (data, responseHeader) {
                         Array.prototype.push.apply($scope.articles, data);
                         isLoading = false;
                     });
