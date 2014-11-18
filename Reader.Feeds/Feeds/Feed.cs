@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace Reader.Feeds
 {
+    /// <summary>
+    /// A feed
+    /// </summary>
     public class Feed
     {
         /// <summary>
-        /// Gets or sets the Title of the feed
+        /// Gets or sets the title of the feed
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the Subtitle of the feed
+        /// Gets or sets the subtitle of the feed
         /// </summary>
         public string Subtitle { get; set; }
 

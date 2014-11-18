@@ -8,10 +8,17 @@ using System.Xml;
 
 namespace Reader.Feeds
 {
+    /// <summary>
+    /// A parser for Atom feeds
+    /// </summary>
     public class AtomFeedParser : XmlFeedParserBase, IFeedParser
     {
         private XmlNode root;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AtomFeedParser"/> class.
+        /// </summary>
+        /// <param name="stream">The feed stream.</param>
         public AtomFeedParser(Stream stream)
             :base(stream)
         {
@@ -19,6 +26,9 @@ namespace Reader.Feeds
             this.root = feed.DocumentElement;
         }
 
+        /// <summary>
+        /// Initializes the atom name table.
+        /// </summary>
         private void InitAtomNameTable()
         {
             namespaceManager.AddNamespace("a", "http://www.w3.org/2005/Atom");
@@ -31,6 +41,12 @@ namespace Reader.Feeds
             namespaceManager.AddNamespace("feedburner", "http://rssnamespace.org/feedburner/ext/1.0");
         }
 
+        /// <summary>
+        /// Gets information about the feed.
+        /// </summary>
+        /// <returns>
+        /// The feed information
+        /// </returns>
         public Feed ParseFeedInformation()
         {
             return new Feed(){
@@ -66,8 +82,14 @@ namespace Reader.Feeds
         {
             return GetNodeUtcDate(root, "./a:updated");
         }
-               
 
+
+        /// <summary>
+        /// Gets the articles in the feed.
+        /// </summary>
+        /// <returns>
+        /// The list of articles
+        /// </returns>
         public IEnumerable<Article> ParseArticles()
         {
             var items = root.SelectNodes("./a:entry", this.namespaceManager);

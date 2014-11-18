@@ -8,11 +8,18 @@ using System.Xml;
 
 namespace Reader.Feeds
 {
+    /// <summary>
+    /// Base class for parsers that parse Xml formats.
+    /// </summary>
     public class XmlFeedParserBase
     {
         protected readonly XmlDocument feed;
         protected readonly XmlNamespaceManager namespaceManager;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlFeedParserBase"/> class.
+        /// </summary>
+        /// <param name="stream">The feed stream.</param>
         protected XmlFeedParserBase(Stream stream)
         {
             this.feed = new XmlDocument();
@@ -20,6 +27,12 @@ namespace Reader.Feeds
             this.namespaceManager = new XmlNamespaceManager(feed.NameTable);
         }
 
+        /// <summary>
+        /// Gets the content of a node as a UTC date.
+        /// </summary>
+        /// <param name="parentNode">The parent node.</param>
+        /// <param name="selectors">The selectors.</param>
+        /// <returns>The date</returns>
         protected DateTime GetNodeUtcDate(XmlNode parentNode, params string[] selectors)
         {
             var text = GetNodeText(parentNode, selectors);
@@ -32,6 +45,12 @@ namespace Reader.Feeds
             return DateTime.MinValue;
         }
 
+        /// <summary>
+        /// Gets a the content of a node as text.
+        /// </summary>
+        /// <param name="parentNode">The parent node.</param>
+        /// <param name="selectors">The selectors.</param>
+        /// <returns>The text</returns>
         protected string GetNodeText(XmlNode parentNode, params string[] selectors)
         {
             foreach (var selector in selectors)
@@ -44,6 +63,13 @@ namespace Reader.Feeds
             return null;
         }
 
+        /// <summary>
+        /// Gets the content of a node attribute as text.
+        /// </summary>
+        /// <param name="parentNode">The parent node.</param>
+        /// <param name="attribute">The attribute name.</param>
+        /// <param name="selectors">The selectors.</param>
+        /// <returns>The text.</returns>
         protected string GetNodeAttribute(XmlNode parentNode, string attribute, params string[] selectors)
         {
             foreach (var selector in selectors)
@@ -61,6 +87,12 @@ namespace Reader.Feeds
             return null;
         }
 
+        /// <summary>
+        /// Gets the content of a nodes attribute as a list of strings.
+        /// </summary>
+        /// <param name="parentNode">The parent node.</param>
+        /// <param name="selectors">The selectors.</param>
+        /// <returns>The list of strings</returns>
         protected IList<string> GetNodeTextList(XmlNode parentNode, params string[] selectors)
         {
             foreach (var selector in selectors)
@@ -75,6 +107,13 @@ namespace Reader.Feeds
             return new List<string>();
         }
 
+        /// <summary>
+        /// Gets the node attribute list.
+        /// </summary>
+        /// <param name="parentNode">The parent node.</param>
+        /// <param name="attribute">The attribute.</param>
+        /// <param name="selectors">The selectors.</param>
+        /// <returns></returns>
         protected IList<string> GetNodeAttributeList(XmlNode parentNode, string attribute, params string[] selectors)
         {
             foreach (var selector in selectors)

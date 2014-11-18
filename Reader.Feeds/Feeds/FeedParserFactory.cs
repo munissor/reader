@@ -9,6 +9,7 @@ using System.Xml;
 
 namespace Reader.Feeds
 {
+
     public class FeedParserFactory : IFeedParserFactory
     {
         public IFeedParser CreateParserFromUrl(string url)

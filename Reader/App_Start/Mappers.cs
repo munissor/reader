@@ -10,11 +10,7 @@ namespace Reader
     {
         public static void Initialize()
         {
-            Mapper.CreateMap<Reader.Model.Subscription, Reader.Models.SubscriptionViewModel>();
-            Mapper.CreateMap<Reader.Models.SubscriptionViewModel, Reader.Model.Subscription>();
-
-            /*    .ForMember(d => d.Id,
-                         x => x.ResolveUsing(j => j.Id.ToString()));*/
+           
         }
     }
 }
