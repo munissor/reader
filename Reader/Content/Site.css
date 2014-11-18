@@ -1,7 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-size: 12px;
+    font-family: 'Segoe UI Web', 'Segoe UI', Ubuntu, 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
 }
 
 /* Set padding to keep content from hitting the edges */

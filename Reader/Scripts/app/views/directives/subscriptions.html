@@ -14,6 +14,9 @@
             <button data-ng-click="closeAdd()">Cancel</button>
         </div>
     </div>
+    <div>
+        Show: <select data-ng-model="filter" data-ng-options="filter for filter in filters"></select>
+    </div>
     <ul class="feedList">
         <li data-ng-repeat="sub in subscriptions">
             <a class="glyphicon glyphicon-remove" aria-hidden="true"  data-ng-click="removeSubscription(sub)" data-ng-show="maintenance && sub.Id"></a>
