@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Reader.Models;
+using System.Configuration;
+using System.Web.Configuration;
 
 namespace Reader
 {
@@ -45,24 +47,45 @@ namespace Reader
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+           if(IsOAuthEnabled("OAuthMSSecret", "OAuthMSId"))
+           {
+               app.UseMicrosoftAccountAuthentication(
+                   clientId: WebConfigurationManager.AppSettings["OAuthMSId"],
+                   clientSecret: WebConfigurationManager.AppSettings["OAuthMSSecret"]);
+           }
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+           if (IsOAuthEnabled("OAuthTwitterSecret", "OAuthTwitterKey"))
+           { 
+               app.UseTwitterAuthentication(
+                  consumerKey: WebConfigurationManager.AppSettings["OAuthTwitterKey"],
+                  consumerSecret: WebConfigurationManager.AppSettings["OAuthTwitterSecret"]);
+           }
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+           if (IsOAuthEnabled("OAuthFacebookSecret", "OAuthFacebookId"))
+           {    app.UseFacebookAuthentication(
+                  appId: WebConfigurationManager.AppSettings["OAuthFacebookId"],
+                  appSecret: WebConfigurationManager.AppSettings["OAuthFacebookSecret"]);
+           }
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+           if (IsOAuthEnabled("OAuthGoogleSecret", "OAuthGoogleId")) 
+            {
+                app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+                {
+                    ClientId = WebConfigurationManager.AppSettings["OAuthGoogleId"],
+                    ClientSecret = WebConfigurationManager.AppSettings["OAuthGoogleSecret"]
+                });
+            }
         }
+
+        private bool IsOAuthEnabled(params string[] props)
+        {
+            foreach (var prop in props)
+            {
+                if (string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings[prop]))
+                    return false;
+            }
+            return true;
+        }
+      
     }
 }
