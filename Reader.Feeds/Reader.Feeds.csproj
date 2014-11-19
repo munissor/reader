@@ -54,6 +54,12 @@
     <Compile Include="Feeds\RssFeedParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Reader.Feeds.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reader.Feeds.shfbproj" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
