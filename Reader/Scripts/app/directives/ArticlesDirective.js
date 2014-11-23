@@ -34,12 +34,12 @@
         };
 
         $scope.formatCategories = function (article) {
-            var t = $.map(article.Categories || [], function (c, i) { return c.Name });
+            var t = $.map(article.Categories || [], function (c, i) { return c.Name; });
             return t.join(', ');
         };
 
         $scope.formatAuthors = function (article) {
-            var t = $.map(article.Authors || [], function (a, i) { return a.Name });
+            var t = $.map(article.Authors || [], function (a, i) { return a.Name; });
             return t.join(', ');
         };
 
@@ -55,12 +55,12 @@
         $scope.toggleRead = function (article) {
             article.Read = !article.Read;
             articleService.save({ id: article.Id }, article);
-        }
+        };
 
         $scope.toggleStarred = function (article) {
             article.Starred = !article.Starred;
             articleService.save({ id: article.Id }, article);
-        }
+        };
     };
 
 

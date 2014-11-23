@@ -20,7 +20,7 @@
 
                 Array.prototype.push.apply($scope.subscriptions, data);
             });
-        };
+        }
 
         $scope.$watch(function () { return $scope.filter; }, function () {
             viewData.filter = $scope.filter;
@@ -30,30 +30,30 @@
         
         $scope.selectSubscription = function (subscription) {
             viewData.subscriptionId = subscription.Id;
-        }
+        };
 
         $scope.openAdd = function () {
             $scope.adding = true;
             $scope.addModel = {
                 Url: ""
             };
-        }
+        };
 
         $scope.closeAdd = function () {
             $scope.adding = false;
             $scope.addModel = null;
-        }
+        };
 
         $scope.add = function () {
             subscriptionService.save($scope.addModel, function (u, putResponseHeaders) {
                 $scope.closeAdd();
                 reloadFeeds();
             });
-        }
+        };
 
         $scope.toggleMaintenance = function () {
             $scope.maintenance = !$scope.maintenance;
-        }
+        };
 
         $scope.removeSubscription = function (subscription) {
             subscriptionService.remove({ id: subscription.Id }, function () {
@@ -61,7 +61,7 @@
                 reloadFeeds();
                 //$scope.subscriptions.remove(subscription);
             });
-        }
+        };
 
         reloadFeeds();
     };
