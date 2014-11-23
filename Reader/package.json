@@ -1,0 +1,19 @@
+﻿{
+    "name": "feedreader",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+    },
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-karma": "*",
+        "karma-jasmine": "*",
+        "karma-coverage": "*",
+        "karma-phantomjs-launcher": "*",
+        "karma-ng-html2js-preprocessor":  "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-jshint": "*",
+        "istanbul":  "*",
+        "jasmine":  "*"
+    }
+}
