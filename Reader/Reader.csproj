@@ -347,6 +347,7 @@
     <Content Include="Scripts\app\views\directives\articles.html" />
     <Content Include="Scripts\app\views\home.html" />
     <Content Include="Scripts\app_mocks\toastr.js" />
+    <Content Include="Scripts\app_tests\directives\ArticlesDirectiveTests.js" />
     <Content Include="Scripts\app_tests\directives\notificationDirectiveTests.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

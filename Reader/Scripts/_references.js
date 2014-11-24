@@ -29,3 +29,4 @@
 /// <reference path="app_tests/directives/notificationdirectivetests.js" />
 /// <reference path="app_mocks/toastr.js" />
 /// <reference path="toastr.min.js" />
+/// <reference path="app_tests/directives/articlesdirectivetests.js" />
