@@ -46,9 +46,7 @@
         $scope.selectArticle = function (article) {
 
             // TODO: delay marking as read with a timeout
-            //article.Read = true;
-            //article.update({ id: post.Id }, post);
-
+            
             viewData.articleId = article.Id;
         };
 

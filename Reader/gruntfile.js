@@ -38,4 +38,5 @@
 
 	// Default task(s).
 	grunt.registerTask('default', ['jshint:all', 'karma', 'watch']);
+	grunt.registerTask('watch', ['jshint:all', 'karma']);
 };

@@ -1,4 +1,4 @@
-﻿describe('directive: pagination', function() {
+﻿describe('directive: notification', function() {
     var _rootScope, _scope, _events, _enums, _toastr, _element;
 
     beforeEach(module('Directives'));
