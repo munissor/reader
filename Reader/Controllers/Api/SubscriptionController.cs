@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Reader.Model;
+﻿using Reader.Model;
 using Reader.Models;
 using Reader.Services;
 using System;
