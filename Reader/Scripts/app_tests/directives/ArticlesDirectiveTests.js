@@ -78,7 +78,7 @@
         var article = { Id: 123, Read: false };
         _scope.toggleRead(article);
 
-        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, {Id: 123, Read: true});
+        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Read: true }, jasmine.any(Function), jasmine.any(Function));
         
     });
 
@@ -87,7 +87,7 @@
         var article = { Id: 123, Read: true };
         _scope.toggleRead(article);
 
-        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Read: false });
+        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Read: false }, jasmine.any(Function), jasmine.any(Function));
 
     });
 
@@ -96,7 +96,7 @@
         var article = { Id: 123, Starred: false };
         _scope.toggleStarred(article);
 
-        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Starred: true });
+        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Starred: true }, jasmine.any(Function), jasmine.any(Function));
 
     });
 
@@ -105,7 +105,7 @@
         var article = { Id: 123, Starred: true };
         _scope.toggleStarred(article);
 
-        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Starred: false });
+        expect(saveSpy).toHaveBeenCalledWith({ id: 123 }, { Id: 123, Starred: false }, jasmine.any(Function), jasmine.any(Function));
 
     });
 

@@ -89,7 +89,7 @@ namespace Reader.Services
         }
 
 
-        public void Post(string userId, Model.Article article)
+        public bool Post(string userId, Model.Article article)
         {
             var aid = long.Parse(article.Id);
             // we get the actual article from the DB, don't trust data coming from outside
@@ -124,8 +124,12 @@ namespace Reader.Services
                     }
 
                     Context.SaveChanges();
+
+                    return true;
                 }
             }
+
+            return false;
         }
     }
 }

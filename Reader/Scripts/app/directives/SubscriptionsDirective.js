@@ -1,4 +1,4 @@
-﻿angular.module('Directives').directive('subscriptions', ['viewData', 'enums', 'subscriptionService', function (viewData, enums, subscriptionService) {
+﻿angular.module('Directives').directive('subscriptions', ['$rootScope', 'viewData', 'enums', 'events', 'subscriptionService', function ($rootScope, viewData, enums, events, subscriptionService) {
 
     var _link = function ($scope, element, attrs) {
 
@@ -45,10 +45,20 @@
         };
 
         $scope.add = function () {
-            subscriptionService.save($scope.addModel, function (u, putResponseHeaders) {
-                $scope.closeAdd();
-                reloadFeeds();
-            });
+            subscriptionService.save($scope.addModel,
+                function (u, putResponseHeaders) {
+                    $scope.closeAdd();
+                    reloadFeeds();
+                    $rootScope.$broadcast(events.notification.show, { title: "Subscribe", text: "Subscribed to the feed!" });
+                },
+                function (httpError) {
+                    if (httpError.status == 304) {
+                        $rootScope.$broadcast(events.notification.show, { title: "Subscribe", text: "You are already subscribed to the feed!" });
+                    }
+                    else {
+                        $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Subscribe", text: "An error occurred" });
+                    }
+                });
         };
 
         $scope.toggleMaintenance = function () {
@@ -56,11 +66,14 @@
         };
 
         $scope.removeSubscription = function (subscription) {
-            subscriptionService.remove({ id: subscription.Id }, function () {
-                // TODO: remove the single feed
-                reloadFeeds();
-                //$scope.subscriptions.remove(subscription);
-            });
+            subscriptionService.remove({ id: subscription.Id },
+                function () {
+                    reloadFeeds();
+                    $rootScope.$broadcast(events.notification.show, { title: "Unsubscribe", text: "Unsubscribed to the feed!" });
+                },
+                function (httpError) {
+                    $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Unsubscribe", text: "An error occurred" });
+                });
         };
 
         reloadFeeds();

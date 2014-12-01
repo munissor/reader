@@ -10,7 +10,7 @@
         _enums = enums;
         _toastr = toastr;
         
-        _element = '<notification></notification>';
+        _element = '<div data-notification></div>';
         _element = $compile(_element)(_scope);
         _scope.$digest();
 

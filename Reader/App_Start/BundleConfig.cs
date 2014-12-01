@@ -29,15 +29,18 @@ namespace Reader
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/toastr.css",
                       "~/Content/site.css"));
 
             // TODO: CDN
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                     "~/Scripts/toastr.js",
                      "~/Scripts/angular.js",
                      "~/Scripts/angular-route.js",
                      "~/Scripts/angular-resource.js",
                      "~/Scripts/angular-sanitize.js",
-                     "~/Scripts/ng-infinite-scroll.js"));
+                     "~/Scripts/ng-infinite-scroll.js"
+                     ));
 
             bundles.Add(new ScriptBundle("~/bundles/angularapp").IncludeDirectory("~/Scripts/app", "*.js", true));
 

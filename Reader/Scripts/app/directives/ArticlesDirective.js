@@ -1,4 +1,4 @@
-﻿angular.module('Directives').directive('articles', ['viewData', 'articleService', function (viewData, articleService) {
+﻿angular.module('Directives').directive('articles', ['$rootScope', 'viewData', 'enums', 'events', 'articleService', function ($rootScope, viewData, enums, events, articleService) {
 
     var _link = function ($scope, element, attrs) {
 
@@ -25,10 +25,14 @@
                     }
                     isLoading = true;
 
-                    articleService.query({ subscriptionId: viewData.subscriptionId, articleId: aid, count: 50, filter: viewData.filter }, function (data, responseHeader) {
-                        Array.prototype.push.apply($scope.articles, data);
-                        isLoading = false;
-                    });
+                    articleService.query({ subscriptionId: viewData.subscriptionId, articleId: aid, count: 50, filter: viewData.filter },
+                        function (data, responseHeader) {
+                            Array.prototype.push.apply($scope.articles, data);
+                            isLoading = false;
+                        },
+                        function (httpError) {
+                            $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Load articles", text: "An error occurred" });
+                        });
                 }
             }
         };
@@ -52,12 +56,20 @@
 
         $scope.toggleRead = function (article) {
             article.Read = !article.Read;
-            articleService.save({ id: article.Id }, article);
+            articleService.save({ id: article.Id }, article,
+                 function (data, responseHeader) {},
+                 function (httpError) {
+                     $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Toggle read", text: "An error occurred" });
+                 });
         };
 
         $scope.toggleStarred = function (article) {
             article.Starred = !article.Starred;
-            articleService.save({ id: article.Id }, article);
+            articleService.save({ id: article.Id }, article,
+                 function (data, responseHeader) { },
+                 function (httpError) {
+                     $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Toggle starred", text: "An error occurred" });
+                 });
         };
     };
 

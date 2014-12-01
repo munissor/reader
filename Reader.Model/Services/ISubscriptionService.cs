@@ -11,8 +11,8 @@ namespace Reader.Services
     {
         IList<Subscription> Get(string userId);
 
-        void Post(string userId, Subscription model);
+        bool Post(string userId, Subscription model);
 
-        void Delete(string userId, string subscriptionId);
+        bool Delete(string userId, string subscriptionId);
     }
 }
