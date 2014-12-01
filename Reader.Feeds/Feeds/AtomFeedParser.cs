@@ -19,7 +19,7 @@ namespace Reader.Feeds
         /// Initializes a new instance of the <see cref="AtomFeedParser"/> class.
         /// </summary>
         /// <param name="stream">The feed stream.</param>
-        public AtomFeedParser(Stream stream)
+        internal AtomFeedParser(Stream stream)
             :base(stream)
         {
             InitAtomNameTable();

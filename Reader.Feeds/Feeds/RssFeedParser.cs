@@ -16,7 +16,7 @@ namespace Reader.Feeds
     {
         private XmlNode channel;
 
-        public RssFeedParser(Stream stream)
+        internal RssFeedParser(Stream stream)
             :base(stream)
         {
             InitRssNameTable();

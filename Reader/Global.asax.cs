@@ -19,8 +19,7 @@ namespace Reader
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Mappers.Initialize();
-            UnityConfiguration.Initialize(GlobalConfiguration.Configuration);
+           UnityConfiguration.Initialize(GlobalConfiguration.Configuration);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,24 @@ namespace Reader.Feeds.Tests
                 Assert.IsInstanceOfType(parser, typeof(AtomFeedParser));
             }
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NullStream()
+        {
+            var parser = factory.CreateParser(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void UnreadableStream()
+        {
+            var mockStream = new Mock<Stream>();
+            mockStream.SetupProperty(x => x.CanRead, false);
+
+            var parser = factory.CreateParser(mockStream.Object);
+        }
+        
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
