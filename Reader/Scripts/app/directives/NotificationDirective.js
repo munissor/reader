@@ -21,8 +21,8 @@
 
 	return {
 		link: _link,
-		restrict: 'E',
+		restrict: 'A',
 		template: _template,
-		replace: true
+		replace: false
 	};
 }]);

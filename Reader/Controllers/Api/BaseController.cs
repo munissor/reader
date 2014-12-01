@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
+using System.Net;
 
 namespace Reader.Controllers.Api
 {
@@ -13,6 +14,11 @@ namespace Reader.Controllers.Api
         protected string GetUserId()
         {
             return User.Identity.GetUserId();
+        }
+
+        protected IHttpActionResult NotModified()
+        {
+            return StatusCode(HttpStatusCode.NotModified);
         }
     }
 }

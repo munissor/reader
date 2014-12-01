@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 
 
+
 namespace Reader.Controllers.Api
 {
     [Authorize]
@@ -18,39 +19,39 @@ namespace Reader.Controllers.Api
 
         public SubscriptionController(ISubscriptionService subscriptionService)
         {
+            if (subscriptionService == null)
+                throw new ArgumentNullException("subscriptionService");
+
             this.subscriptionService = subscriptionService;
         }
 
         // GET: api/Subscription
-        public IList<Subscription> Get()
+        public IHttpActionResult Get()
         {
-            return subscriptionService.Get(GetUserId());
+            return Ok<IList<Subscription>>(subscriptionService.Get(GetUserId()));
         }
 
-        // GET: api/Subscription/5
-        public Subscription Get(string id)
-        {
-            return null;
-        }
-
+        
         // POST: api/Subscription
-        public void Post([FromBody]Subscription subscription)
+        public IHttpActionResult Post([FromBody]Subscription subscription)
         {
 
-            subscriptionService.Post(GetUserId(), subscription);
-            // add
+            var res = subscriptionService.Post(GetUserId(), subscription);
+            if (res)
+                return Ok();
+
+            return NotModified();
         }
 
-        // PUT: api/Subscription/5
-        public void Put(string id, [FromBody]Subscription value)
-        {
-            // upd
-        }
-
+        
         // DELETE: api/Subscription/5
-        public void Delete(string id)
+        public IHttpActionResult Delete(string id)
         {
-            subscriptionService.Delete(GetUserId(), id);
+            var res = subscriptionService.Delete(GetUserId(), id);
+            if (res)
+                return Ok();
+
+            return NotFound();
         }
     }
 }

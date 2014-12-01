@@ -14,37 +14,37 @@ namespace Reader.Controllers.Api
     {
          private IArticleService articleService;
 
-         public ArticleController(IArticleService articleService)
+        public ArticleController(IArticleService articleService)
         {
             this.articleService = articleService;
         }
 
         // GET api/<controller>
-        public IEnumerable<Article> Get(string subscriptionId, string articleId, int count, string filter)
+        public IHttpActionResult Get(string subscriptionId, string articleId, int count, string filter)
         {
-            return articleService.Get(GetUserId(), subscriptionId, articleId, count, filter);
+            var articles = articleService.Get(GetUserId(), subscriptionId, articleId, count, filter);
+            return Ok<IEnumerable<Article>>(articles);
         }
 
         // GET api/<controller>/5
-        public ArticleDetail Get(string id)
+        public IHttpActionResult Get(string id)
         {
-            return articleService.Get(id);
+            var article = articleService.Get(id);
+            if (article != null)
+                return Ok<ArticleDetail>(article);
+            else
+                return NotFound();
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Article article)
+        public IHttpActionResult Post([FromBody]Article article)
         {
-            articleService.Post(GetUserId(), article);
-        }
+            var res = articleService.Post(GetUserId(), article);
+            if( res )
+                return Ok();
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return NotFound();
         }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

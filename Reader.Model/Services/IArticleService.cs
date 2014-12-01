@@ -13,6 +13,6 @@ namespace Reader.Services
 
         ArticleDetail Get(string articleId);
 
-        void Post(string userId, Article article);
+        bool Post(string userId, Article article);
     }
 }

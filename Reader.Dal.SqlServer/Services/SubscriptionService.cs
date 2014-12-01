@@ -37,7 +37,7 @@ namespace Reader.Services
         }
 
 
-        public void Post(string userId, Model.Subscription model)
+        public bool Post(string userId, Model.Subscription model)
         {
             // check if the user is already subscribed to the feed
             var subscribed = (from s in Context.Set<Subscription>()
@@ -81,11 +81,15 @@ namespace Reader.Services
                     Context.Set<Subscription>().Add(subscription);
 
                     Context.SaveChanges();
+
+                    return true;
                 }
             }
+
+            return false;
         }
 
-        public void Delete(string userId, string subscriptionId)
+        public bool Delete(string userId, string subscriptionId)
         {
             var sid = long.Parse(subscriptionId);
             var sub = Context.Set<Subscription>()
@@ -95,7 +99,10 @@ namespace Reader.Services
             {
                 Context.Set<Subscription>().Remove(sub);
                 Context.SaveChanges();
+                return true;
             }
+
+            return false;
         } 
     }
 }
