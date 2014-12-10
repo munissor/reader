@@ -71,11 +71,16 @@
                      $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Toggle starred", text: "An error occurred" });
                  });
         };
+
+        $scope.isSelected = function (article) {
+            return viewData.articleId == article.Id;
+        };
     };
 
 
     return {
         link: _link,
+        scope: {},
         restrict: 'A',
         templateUrl: 'Scripts/app/views/directives/articles.html',
         replace: false

@@ -76,12 +76,17 @@
                 });
         };
 
+        $scope.isSelected = function(subscription) {
+            return subscription.Id == viewData.subscriptionId;
+        };
+        
         reloadFeeds();
     };
   
 
     return {
         link: _link,
+        scope: {},
         restrict: 'A',
         templateUrl: 'Scripts/app/views/directives/subscriptions.html',
         replace: true

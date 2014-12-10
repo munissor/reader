@@ -56,6 +56,14 @@ textarea {
     overflow: auto;
 }
 
+#subscriptions {
+    padding: 8px;
+}
+
+#subscriptions .selected {
+    font-weight: bold;
+}
+
 #articles {
     position: absolute;
     right: 0;
@@ -63,6 +71,10 @@ textarea {
     top:0;
     height: 200px;
     overflow: auto;
+}
+
+#articles .selected  td {
+    background-color: lightblue;
 }
 
 #articles .unread {
@@ -80,4 +92,5 @@ textarea {
     bottom: 0;
     right: 0;
     overflow: auto;
+    padding: 8px;
 }
