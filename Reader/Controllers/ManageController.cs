@@ -17,10 +17,10 @@ namespace Reader.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager)
-        {
-            UserManager = userManager;
-        }
+        //public ManageController(ApplicationUserManager userManager)
+        //{
+        //    UserManager = userManager;
+        //}
 
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
