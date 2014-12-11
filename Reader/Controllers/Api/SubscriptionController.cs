@@ -12,6 +12,9 @@ using System.Web.Http;
 
 namespace Reader.Controllers.Api
 {
+    /// <summary>
+    /// API to manage subscriptions to feeds
+    /// </summary>
     [Authorize]
     public class SubscriptionController : BaseController
     {
@@ -25,14 +28,20 @@ namespace Reader.Controllers.Api
             this.subscriptionService = subscriptionService;
         }
 
-        // GET: api/Subscription
+        /// <summary>
+        /// Gets a list of subscriptions for the logged in user.
+        /// </summary>
+        /// <returns></returns>
         public IHttpActionResult Get()
         {
             return Ok<IList<Subscription>>(subscriptionService.Get(GetUserId()));
         }
 
-        
-        // POST: api/Subscription
+
+        /// <summary>
+        /// Updates a subscription
+        /// </summary>
+        /// <param name="subscription">The subscription.</param>
         public IHttpActionResult Post([FromBody]Subscription subscription)
         {
 
@@ -43,8 +52,11 @@ namespace Reader.Controllers.Api
             return NotModified();
         }
 
-        
-        // DELETE: api/Subscription/5
+
+        /// <summary>
+        /// Deletes the specified subscription by id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         public IHttpActionResult Delete(string id)
         {
             var res = subscriptionService.Delete(GetUserId(), id);
