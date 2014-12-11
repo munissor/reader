@@ -19,8 +19,8 @@
     </div>
     <ul class="feedList">
         <li data-ng-repeat="sub in subscriptions">
-            <a class="glyphicon glyphicon-remove" aria-hidden="true"  data-ng-click="removeSubscription(sub)" data-ng-show="maintenance && sub.Id"></a>
-            <a data-ng-click="selectSubscription(sub)">{{sub.Title || sub.Url}}</a>
+            <a class="glyphicon glyphicon-remove" aria-hidden="true" data-ng-click="removeSubscription(sub)" data-ng-show="maintenance && sub.Id"></a>
+            <a data-ng-class="{selected: isSelected(sub)}" data-ng-click="selectSubscription(sub)" >{{sub.Title || sub.Url}}</a>
         </li>
     </ul>
 </div>

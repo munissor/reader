@@ -21,6 +21,7 @@
 
     return {
         link: _link,
+        scope: {},
         restrict: 'A',
         templateUrl: 'Scripts/app/views/directives/article.html',
         replace: false
