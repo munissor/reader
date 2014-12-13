@@ -81,9 +81,9 @@ namespace Reader.Services
                     Context.Set<Subscription>().Add(subscription);
 
                     Context.SaveChanges();
-
-                    return true;
                 }
+
+                return true;
             }
 
             return false;
