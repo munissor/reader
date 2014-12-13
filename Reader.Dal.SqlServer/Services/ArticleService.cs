@@ -53,7 +53,8 @@ namespace Reader.Services
             if (!string.IsNullOrWhiteSpace(lastArticleId))
             {
                 long aid = long.Parse(lastArticleId);
-                articles = articles.Where(x => x.Article.Id > aid);
+                var a = Context.Set<Article>().FirstOrDefault(x => x.Id == aid);
+                articles = articles.Where(x => x.Article.PublicationDate > a.PublicationDate);
             }
 
             var data = articles.Take(count).ToList();

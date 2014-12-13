@@ -69,7 +69,7 @@
             subscriptionService.remove({ id: subscription.Id },
                 function () {
                     reloadFeeds();
-                    $rootScope.$broadcast(events.notification.show, { title: "Unsubscribe", text: "Unsubscribed to the feed!" });
+                    $rootScope.$broadcast(events.notification.show, { title: "Unsubscribe", text: "Unsubscribed from the feed!" });
                 },
                 function (httpError) {
                     $rootScope.$broadcast(events.notification.show, { type: enums.notificationTypes.error, title: "Unsubscribe", text: "An error occurred" });
