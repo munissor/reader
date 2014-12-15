@@ -1,5 +1,5 @@
 ﻿describe('directive: articles', function () {
-    var _rootScope, _scope, _events, _enums, _element, _mockArticleService, _mockViewData;
+    var _rootScope, _s, _scope, _events, _enums, _element, _mockArticleService, _mockViewData;
 
     beforeEach(module('Directives'));
 
@@ -37,15 +37,16 @@
     beforeEach(inject(function ($rootScope, $compile, $templateCache, events, enums, articleService, viewData) {
         $templateCache.put("Scripts/app/views/directives/articles.html", '<div></div>');
         _rootScope = $rootScope;
-        _scope = $rootScope.$new();
+        _s = $rootScope.$new();
         _events = events;
         _enums = enums;
         _mockArticleService = articleService;
         _mockViewData = viewData;
         
         _element = '<div data-articles></div>';
-        _element = $compile(_element)(_scope);
-        _scope.$digest();
+        _element = $compile(_element)(_s);
+        _s.$digest();
+        _scope = _element.isolateScope();
     }));
 
     it('should change the viewData.articleId when selecting a new article', function () {
